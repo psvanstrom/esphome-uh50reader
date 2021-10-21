@@ -54,10 +54,12 @@ sensor:
       };
     sensors:
     - name: "Cumulative Active Import"
+      id: "heating_cumulative_active_import"
       unit_of_measurement: kWh
       accuracy_decimals: 2
       state_class: "total_increasing"
       device_class: "energy"
     - name: "Cumulative Volume"
+      id: "heating_cumulative_volume"
       unit_of_measurement: m3
       accuracy_decimals: 6
