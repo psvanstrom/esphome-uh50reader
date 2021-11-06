@@ -2,7 +2,7 @@
 ESPHome custom component for communicating with Landis+Gyr T550 (UH50) heat/cold meters and reading usage data. The UH50 meter communicates over an optical interface using the standardized IEC 62056-21 protocol. If the meter is battery powered, each request for data will drain the battery life. 
 
 ## ESPHome version
-The current version in main is tested with ESPHome version `2021.10.2`. Make sure your ESPHome version is up to date if you experience compile problems.
+The current version in main is tested with ESPHome version `2021.10.3`. Make sure your ESPHome version is up to date if you experience compile problems.
 
 ## Hardware
 The optical eye hardware I'm using was ordered as a kit from here: https://wiki.hal9k.dk/projects/kamstrup, they no longer sell kits but provide all the necessary information for printing the enclosure as well as PCB schematics and component list. This optical eye is then connected to a NodeMCU ESP-controller with the RX pin connected to the RX pin (GPIO3) on the NodeMCU and the TX pin connected to the D4 pin (GPIO2) on the NodeMCU.
