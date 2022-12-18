@@ -22,7 +22,6 @@
 #include "esphome.h"
 
 #define BUF_SIZE 100
-#define WAIT_TIME 10
 
 byte data_cmd[] = { 
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -46,7 +45,7 @@ class ParsedMessage {
     double cumulativeVolume;
 };
 
-class UH50Reader : public Component, public UARTDevice {
+class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
   const char* DELIMITERS = "(*";
   UARTDevice uart_out;
   unsigned long timeLastRun;
@@ -59,16 +58,12 @@ class UH50Reader : public Component, public UARTDevice {
     UH50Reader(UARTComponent *uart_in, UARTComponent *uart_out) : UARTDevice(uart_in), uart_out(uart_out) { }
 
     void setup() override {
-      sendDataCmd();
-      timeLastRun = millis() - (WAIT_TIME - 1) * 60000;
+      register_service(&UH50Reader::read_meter, "start_read_meter");
     }
 
-    void loop() override {
-      if (millis() - timeLastRun > WAIT_TIME * 60000) {
+    void read_meter() {
         sendDataCmd();
         readTelegram();
-        timeLastRun = millis();
-      }
     }
 
   private:
@@ -142,7 +137,7 @@ class UH50Reader : public Component, public UARTDevice {
             char* unit = strtok_single(NULL, "*)");
             
             if (value != NULL) {
-              //ESP_LOGI("data", "%s=[%s]", obis_code, value);
+              ESP_LOGI("data", "%s=[%s]", obis_code, value);
               parseRow(&parsed, obis_code, value);
             }
             obis_code = strtok_single(NULL, "(");
