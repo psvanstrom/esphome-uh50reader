@@ -22,6 +22,7 @@
 #include "esphome.h"
 
 #define BUF_SIZE 100
+#define WAIT_TIME 10
 
 byte data_cmd[] = { 
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -58,7 +59,19 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
     UH50Reader(UARTComponent *uart_in, UARTComponent *uart_out) : UARTDevice(uart_in), uart_out(uart_out) { }
 
     void setup() override {
+      sendDataCmd();
+      timeLastRun = millis() - (WAIT_TIME - 1) * 60000;
+
+      //register the service which Home Assistant can call to read the meter
       register_service(&UH50Reader::read_meter, "start_read_meter");
+    }
+
+    void loop() override {
+      if (millis() - timeLastRun > WAIT_TIME * 60000) {
+        sendDataCmd();
+        readTelegram();
+        timeLastRun = millis();
+      }
     }
 
     void read_meter() {
