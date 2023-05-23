@@ -150,7 +150,7 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
             char* unit = strtok_single(NULL, "*)");
             
             if (value != NULL) {
-              ESP_LOGI("data", "%s=[%s]", obis_code, value);
+              //ESP_LOGI("data", "%s=[%s]", obis_code, value);
               parseRow(&parsed, obis_code, value);
             }
             obis_code = strtok_single(NULL, "(");
