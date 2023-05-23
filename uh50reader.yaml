@@ -1,7 +1,8 @@
 esphome:
   name: esp-uh50reader
   platform: ESP8266
-  board: d1_mini
+  #board d1_mini also works (wemos d1 mini)
+  board: nodemcu 
   includes:
     - uh50reader.h
 
@@ -16,8 +17,9 @@ wifi:
 
 captive_portal:
 
-web_server:
-  port: 80
+# Uncomment the following 2 lines to enable web-access to the device to view logs and update firmware
+#web_server:
+#  port: 80
 
 # Enable logging
 logger:
