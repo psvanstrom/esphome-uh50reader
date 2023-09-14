@@ -46,7 +46,7 @@ class ParsedMessage {
     double cumulativeVolume;
 };
 
-class UH50Reader : public Component, public UARTDevice {
+class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
   const char* DELIMITERS = "(*";
   UARTDevice uart_out;
   unsigned long timeLastRun;
@@ -61,6 +61,9 @@ class UH50Reader : public Component, public UARTDevice {
     void setup() override {
       sendDataCmd();
       timeLastRun = millis() - (WAIT_TIME - 1) * 60000;
+
+      //register the service which Home Assistant can call to read the meter
+      register_service(&UH50Reader::read_meter, "start_read_meter");
     }
 
     void loop() override {
@@ -69,6 +72,11 @@ class UH50Reader : public Component, public UARTDevice {
         readTelegram();
         timeLastRun = millis();
       }
+    }
+
+    void read_meter() {
+        sendDataCmd();
+        readTelegram();
     }
 
   private:

@@ -1,7 +1,8 @@
 esphome:
   name: esp-uh50reader
   platform: ESP8266
-  board: nodemcu
+  #board d1_mini also works (wemos d1 mini)
+  board: nodemcu 
   includes:
     - uh50reader.h
 
@@ -16,6 +17,10 @@ wifi:
 
 captive_portal:
 
+# Uncomment the following 2 lines to enable web-access to the device to view logs and update firmware
+#web_server:
+#  port: 80
+
 # Enable logging
 logger:
   level: DEBUG
@@ -23,7 +28,8 @@ logger:
   
 # Enable Home Assistant API
 api:
-  password: !secret hass_api_password
+  encryption:
+    key: !secret encryption_key
 
 ota:
   password: !secret ota_password
