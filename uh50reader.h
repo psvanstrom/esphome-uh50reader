@@ -21,7 +21,7 @@
 
 #include "esphome.h"
 
-#define BUF_SIZE 100
+#define BUF_SIZE 1500
 #define WAIT_TIME 10
 
 byte data_cmd[] = { 
@@ -128,14 +128,18 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
     void readTelegram() {
       ParsedMessage parsed = ParsedMessage();
       
+      bool publish=false;
       // fast forward until we find the STX byte (start-of-text)
       byte b = 0x00;
       while (available() && b != 0x02) {
         b = read();
       }
 
-      while (available()) {
-        int len = Serial.readBytesUntil('\n', buffer, BUF_SIZE);
+      while (int len = available()) {
+        ESP_LOGD("readTelegram", "Got %d bytes available to read", len);
+        if (!read_array((uint8_t *) buffer, len))
+               ESP_LOGW("readTelegram", "read_array() returned false, meter reading may be incomplete");
+        ESP_LOGD("readTelegram", "Read %s", buffer);
 
         if (len > 0) {
           // end character reached
@@ -152,6 +156,7 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
             if (value != NULL) {
               //ESP_LOGI("data", "%s=[%s]", obis_code, value);
               parseRow(&parsed, obis_code, value);
+              publish=true;
             }
             obis_code = strtok_single(NULL, "(");
           }
@@ -160,6 +165,12 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
 
         // clean buffer
         memset(buffer, 0, BUF_SIZE - 1);
+
+      }
+
+      if (publish == true) {
+        ESP_LOGD("readTelegram", "Publishing sensor data");
+        publishSensors(&parsed);
       }
     }
 
