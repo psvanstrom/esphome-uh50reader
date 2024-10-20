@@ -56,16 +56,53 @@ sensor:
       App.register_component(meter_sensor);
       return {
         meter_sensor->cumulativeActiveImport,
-        meter_sensor->cumulativeVolume
+        meter_sensor->cumulativeVolume,
+        meter_sensor->currentPower,
+        meter_sensor->flowRate,
+        meter_sensor->temperatureFlow,
+        meter_sensor->temperatureReturn,
+        meter_sensor->temperatureDiff
       };
     sensors:
-    - name: "Cumulative Active Import"
-      id: "heating_cumulative_active_import"
-      unit_of_measurement: kWh
-      accuracy_decimals: 2
+    - name: "UH50 Cumulative Active Import"
+      id: "uh50_cumulative_active_import"
+      unit_of_measurement: MWh
+      accuracy_decimals: 3
       state_class: "total_increasing"
       device_class: "energy"
-    - name: "Cumulative Volume"
-      id: "heating_cumulative_volume"
+    - name: "UH50 Cumulative Volume"
+      id: "uh50_cumulative_volume"
       unit_of_measurement: m3
-      accuracy_decimals: 6
+      accuracy_decimals: 3
+      state_class: "total_increasing"
+      device_class: "energy"
+    - name: "UH50 Current Power"
+      id: "uh50_current_power"
+      unit_of_measurement: kW
+      accuracy_decimals: 2
+      state_class: "measurement"
+      device_class: "energy"
+    - name: "UH50 Flow Rate"
+      id: "uh50_flow_rate"
+      unit_of_measurement: m3ph
+      accuracy_decimals: 3
+      state_class: "measurement"
+      device_class: "energy"
+    - name: "UH50 Flow Temperature"
+      id: "uh50_flow_temperature"
+      unit_of_measurement: C
+      accuracy_decimals: 2
+      state_class: "measurement"
+      device_class: "energy"
+    - name: "UH50 Return Temperature"
+      id: "uh50_return_temperature"
+      unit_of_measurement: C
+      accuracy_decimals: 2
+      state_class: "measurement"
+      device_class: "energy"
+    - name: "UH50 Diff Temperature"
+      id: "uh50_diff_temperature"
+      unit_of_measurement: C
+      accuracy_decimals: 2
+      state_class: "measurement"
+      device_class: "energy"
