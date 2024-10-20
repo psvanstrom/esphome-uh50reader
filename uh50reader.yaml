@@ -4,6 +4,7 @@ esphome:
   #board d1_mini also works (wemos d1 mini)
   board: nodemcu 
   includes:
+    - obis.h
     - uh50reader.h
 
 wifi:
