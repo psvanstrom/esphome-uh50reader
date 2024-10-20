@@ -21,15 +21,15 @@
 
 #include "esphome.h"
 
-#define BUF_SIZE 100
-#define WAIT_TIME 10
+#define BUF_SIZE 2500
+#define WAIT_TIME 1
 
 byte data_cmd[] = { 
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x2F, 0x3F, 0x21, 0x0D, 0x0A
+  '/',  '#' , '!', 0x0D, 0x0A
 };
 
 // Landis & Gyr EN 61107 mode B protocol
@@ -40,12 +40,6 @@ byte data_cmd[] = {
 // https://github.com/lvzon/dsmr-p1-parser/blob/master/doc/IEC-62056-21-notes.md
 // http://womp3-14.vijfwal.nl/p2013c.html
 
-class ParsedMessage {
-  public:
-    double cumulativeActiveImport;
-    double cumulativeVolume;
-};
-
 class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
   const char* DELIMITERS = "(*";
   UARTDevice uart_out;
@@ -55,6 +49,11 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
   public:
     Sensor *cumulativeActiveImport = new Sensor();
     Sensor *cumulativeVolume = new Sensor();
+    Sensor *currentPower = new Sensor();
+    Sensor *flowRate = new Sensor();
+    Sensor *temperatureFlow = new Sensor();
+    Sensor *temperatureReturn = new Sensor();
+    Sensor *temperatureDiff = new Sensor();
 
     UH50Reader(UARTComponent *uart_in, UARTComponent *uart_out) : UARTDevice(uart_in), uart_out(uart_out) { }
 
@@ -80,42 +79,25 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
     }
 
   private:
-    char* strtok_single (char * str, char const * delims) {
-      static char  * src = NULL;
-      char  *  p,  * ret = 0;
 
-      if (str != NULL)
-        src = str;
+    void publishSensors(OBISData *od, int count) {
 
-      if (src == NULL)
-        return NULL;
-
-      if ((p = strpbrk (src, delims)) != NULL) {
-        *p  = 0;
-        ret = src;
-        src = ++p;
-
-      } else if (*src) {
-        ret = src;
-        src = NULL;
+      for (int i=0; i < count; i++) {
+	if (!strcmp(od[i].obis_code, "6.8"))
+          cumulativeActiveImport->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.26"))
+          cumulativeVolume->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.4"))
+          currentPower->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.27"))
+          flowRate->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.29"))
+          temperatureFlow->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.28"))
+          temperatureReturn->publish_state(atof(od[i].value));
+	else if (!strcmp(od[i].obis_code, "6.30"))
+          temperatureDiff->publish_state(atof(od[i].value));
       }
-
-      return ret;
-    }
-
-    void parseRow(ParsedMessage* parsed, char* obis_code, char* value) {
-      if (strncmp(obis_code, "6.8", 6) == 0) {
-        parsed->cumulativeActiveImport = atof(value) * 1000;
-
-      } else if (strncmp(obis_code, "6.26", 6) == 0) {
-        parsed->cumulativeVolume = atof(value);
-
-      }
-    }
-
-    void publishSensors(ParsedMessage* parsed) {
-      cumulativeActiveImport->publish_state(parsed->cumulativeActiveImport);
-      cumulativeVolume->publish_state(parsed->cumulativeVolume);
     }
 
     void sendDataCmd() {
@@ -126,41 +108,29 @@ class UH50Reader : public Component, public UARTDevice, public CustomAPIDevice {
     }
 
     void readTelegram() {
-      ParsedMessage parsed = ParsedMessage();
+      OBISData obisdata[MAX_OBIS_CODES];
       
+      bool publish=false;
       // fast forward until we find the STX byte (start-of-text)
       byte b = 0x00;
       while (available() && b != 0x02) {
         b = read();
       }
 
-      while (available()) {
-        int len = Serial.readBytesUntil('\n', buffer, BUF_SIZE);
+      while (int len = available()) {
+        ESP_LOGD("readTelegram", "Got %d bytes available to read", len);
+        if (!read_array((uint8_t *) buffer, len))
+               ESP_LOGW("readTelegram", "read_array() returned false, meter reading may be incomplete");
+        ESP_LOGD("readTelegram", "Read %s", buffer);
 
-        if (len > 0) {
-          // end character reached
-          if (buffer[0] == '!') {
-            publishSensors(&parsed);
-            return;
-          }
-
-          char* obis_code = strtok_single(buffer, "(");
-          while (obis_code != NULL) {
-            char* value = strtok_single(NULL, "*)");
-            char* unit = strtok_single(NULL, "*)");
-            
-            if (value != NULL) {
-              //ESP_LOGI("data", "%s=[%s]", obis_code, value);
-              parseRow(&parsed, obis_code, value);
-            }
-            obis_code = strtok_single(NULL, "(");
-          }
-         
-        }
+	int count;
+	parse_obis(buffer, obisdata, &count);
+	print_parsed_data(obisdata, count);
+        publishSensors(obisdata, count);
 
         // clean buffer
         memset(buffer, 0, BUF_SIZE - 1);
+
       }
     }
-
 };
