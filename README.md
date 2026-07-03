@@ -36,7 +36,7 @@ All sensors are optional — declare only the ones you want.
 ## ESPHome version
 
 The current version in `main` is written for the `external_components` API and is tested
-with ESPHome `2025.12.2`. The old `custom` component API is no longer supported by ESPHome,
+with ESPHome `2026.6.4`. The old `custom` component API is no longer supported by ESPHome,
 so make sure your ESPHome version is reasonably up to date if you experience compile
 problems.
 
