@@ -1,11 +1,9 @@
 esphome:
   name: esp-uh50reader
-  platform: ESP8266
-  #board d1_mini also works (wemos d1 mini)
-  board: nodemcu 
-  includes:
-    - obis.h
-    - uh50reader.h
+
+esp8266:
+  # board d1_mini also works (wemos d1 mini)
+  board: nodemcu
 
 wifi:
   ssid: !secret wifi_ssid
@@ -25,16 +23,19 @@ captive_portal:
 # Enable logging
 logger:
   level: DEBUG
-  baud_rate: 0 #disable logging over uart
-  
+  baud_rate: 0 # disable logging over uart
+
 # Enable Home Assistant API
 api:
   encryption:
     key: !secret encryption_key
 
 ota:
+  platform: esphome
   password: !secret ota_password
 
+# The protocol requires outgoing communication (TX) at 300 baud and incoming
+# communication (RX) at 2400 baud, so both hardware UARTs of the ESP8266 are used.
 uart:
   - id: uart_in
     rx_pin: RX
@@ -49,61 +50,31 @@ uart:
     data_bits: 7
     parity: EVEN
     stop_bits: 2
-  
+
+external_components:
+  - source: github://psvanstrom/esphome-uh50reader@main
+    components: [uh50]
+
 sensor:
-  - platform: custom
-    lambda: |-
-      auto meter_sensor = new UH50Reader(id(uart_in), id(uart_out));
-      App.register_component(meter_sensor);
-      return {
-        meter_sensor->cumulativeActiveImport,
-        meter_sensor->cumulativeVolume,
-        meter_sensor->currentPower,
-        meter_sensor->flowRate,
-        meter_sensor->temperatureFlow,
-        meter_sensor->temperatureReturn,
-        meter_sensor->temperatureDiff
-      };
-    sensors:
-    - name: "UH50 Cumulative Active Import"
-      id: "uh50_cumulative_active_import"
-      unit_of_measurement: MWh
-      accuracy_decimals: 3
-      state_class: "total_increasing"
-      device_class: "energy"
-    - name: "UH50 Cumulative Volume"
-      id: "uh50_cumulative_volume"
-      unit_of_measurement: m3
-      accuracy_decimals: 3
-      state_class: "total_increasing"
-      device_class: "energy"
-    - name: "UH50 Current Power"
-      id: "uh50_current_power"
-      unit_of_measurement: kW
-      accuracy_decimals: 2
-      state_class: "measurement"
-      device_class: "energy"
-    - name: "UH50 Flow Rate"
-      id: "uh50_flow_rate"
-      unit_of_measurement: m3ph
-      accuracy_decimals: 3
-      state_class: "measurement"
-      device_class: "energy"
-    - name: "UH50 Flow Temperature"
-      id: "uh50_flow_temperature"
-      unit_of_measurement: C
-      accuracy_decimals: 2
-      state_class: "measurement"
-      device_class: "energy"
-    - name: "UH50 Return Temperature"
-      id: "uh50_return_temperature"
-      unit_of_measurement: C
-      accuracy_decimals: 2
-      state_class: "measurement"
-      device_class: "energy"
-    - name: "UH50 Diff Temperature"
-      id: "uh50_diff_temperature"
-      unit_of_measurement: C
-      accuracy_decimals: 2
-      state_class: "measurement"
-      device_class: "energy"
+  - platform: uh50
+    uart_id: uart_in
+    uart_out_id: uart_out
+    # The meter is (usually) battery powered, so read it sparingly.
+    update_interval: 30min
+    # Optional on-demand read, exposed to Home Assistant as a button.
+    read_button:
+      name: "UH50 Read Meter"
+    cumulative_energy:
+      name: "UH50 Cumulative Active Import"
+    cumulative_volume:
+      name: "UH50 Cumulative Volume"
+    current_power:
+      name: "UH50 Current Power"
+    flow_rate:
+      name: "UH50 Flow Rate"
+    flow_temp:
+      name: "UH50 Flow Temperature"
+    return_temp:
+      name: "UH50 Return Temperature"
+    diff_temp:
+      name: "UH50 Diff Temperature"

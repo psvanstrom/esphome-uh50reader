@@ -1,3 +1,33 @@
+# Secrets
 secrets.yaml
-.esphome
-uh50-reader
+secrets.yml
+*.secret
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# ESPHome build artefacts
+.build/
+.cache/
+logs/
+.esphome/
+uh50-reader/
+
+# Arduino/ESP build files
+*.bin
+*.elf
+*.o
+*.a
+pioenvs/
+.pio/
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated
+.DS_Store
+Thumbs.db
