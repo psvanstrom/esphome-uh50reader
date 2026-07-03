@@ -1,87 +1,80 @@
-# esphome-uh50reader
+# Landis+Gyr UH50 (T550) Heat Meter Reader
 
-An [ESPHome](https://esphome.io/) **external component** for communicating with Landis+Gyr
-T550 (UH50) heat/cold meters and reading usage data. The UH50 meter communicates over an
-optical interface using the standardized IEC 62056-21 (mode B) protocol. If the meter is
-battery powered, each request for data will drain the battery life, so read it sparingly.
+An [ESPHome](https://esphome.io/) external component that reads a **Landis+Gyr Ultraheat
+UH50 / T550** heat/cold meter through its optical interface and publishes the values to
+Home Assistant.
 
-> **Note:** ESPHome removed support for `custom` components. This project has been rewritten
-> as an [`external_components`](https://esphome.io/components/external_components.html)
-> package. If you are migrating from the old `sensor: platform: custom` / `includes:`
-> setup, replace it with the `external_components` + `platform: uh50` configuration shown
-> below.
+The meter speaks the [IEC 62056-21](https://en.wikipedia.org/wiki/IEC_62056) (mode B)
+protocol over the optical head. This component sends the data request, reads the response
+telegram, parses the OBIS records and decodes the measured values into standard ESPHome
+sensors. If the meter is battery powered, every request drains the battery a little, so
+poll it sparingly.
+
+> **Migrating from the old custom component?** ESPHome removed support for `custom`
+> components. Replace the old `sensor: platform: custom` / `includes:` setup with the
+> `external_components` + `platform: uh50` configuration shown under [Setup](#setup).
 
 ## Features
 
 - Reads cumulative energy, cumulative volume, current power, flow rate and
   flow/return/difference temperatures (see below)
 - Non-blocking read cycle — the main loop and Wi-Fi/API stay responsive while polling
+- OBIS telegram parsing with bounds-checked field handling
 - Optional on-demand read via a Home Assistant **button** or an ESPHome **action**
-  (`uh50.read`)
 
 ### Sensors
 
 All sensors are optional — declare only the ones you want.
 
-| Key                  | OBIS  | Unit  | Device class | State class        |
-|----------------------|-------|-------|--------------|--------------------|
-| `cumulative_energy`  | 6.8   | MWh   | energy       | total_increasing   |
-| `cumulative_volume`  | 6.26  | m³    | volume       | total_increasing   |
-| `current_power`      | 6.4   | kW    | power        | measurement        |
-| `flow_rate`          | 6.27  | m³/h  | –            | measurement        |
-| `flow_temp`          | 6.29  | °C    | temperature  | measurement        |
-| `return_temp`        | 6.28  | °C    | temperature  | measurement        |
-| `diff_temp`          | 6.30  | °C    | temperature  | measurement        |
-
-## ESPHome version
-
-The current version in `main` is written for the `external_components` API and is tested
-with ESPHome `2026.6.4`. The old `custom` component API is no longer supported by ESPHome,
-so make sure your ESPHome version is reasonably up to date if you experience compile
-problems.
+| Key                 | OBIS  | Unit  | Device class | State class        |
+|---------------------|-------|-------|--------------|--------------------|
+| `cumulative_energy` | 6.8   | MWh   | energy       | total_increasing   |
+| `cumulative_volume` | 6.26  | m³    | volume       | total_increasing   |
+| `current_power`     | 6.4   | kW    | power        | measurement        |
+| `flow_rate`         | 6.27  | m³/h  | –            | measurement        |
+| `flow_temp`         | 6.29  | °C    | temperature  | measurement        |
+| `return_temp`       | 6.28  | °C    | temperature  | measurement        |
+| `diff_temp`         | 6.30  | °C    | temperature  | measurement        |
 
 ## Hardware
 
-The optical eye hardware I'm using was ordered as a kit from here:
-https://wiki.hal9k.dk/projects/kamstrup — they no longer sell kits but provide all the
-necessary information for printing the enclosure as well as PCB schematics and component
-list. This optical eye is connected to a NodeMCU ESP-controller with the RX pin connected
-to the RX pin (GPIO3) and the TX pin connected to the D4 pin (GPIO2) on the NodeMCU.
+- An **ESP8266** board with **two hardware UARTs** — the reference configuration uses a
+  **NodeMCU** (ESP-12). A Wemos/LOLIN **D1 mini** also works.
+- An **optical IEC 62056-21 read head** (an "IR eye") with TTL-level TX/RX, positioned
+  over the meter's optical port. The one used here was built from the
+  [hal9k Kamstrup optical eye](https://wiki.hal9k.dk/projects/kamstrup) kit (enclosure,
+  PCB schematics and component list are published there).
 
-### UART
+### Wiring
 
-Since the protocol requires outgoing communication (TX) at 300 baud and the incoming
-communication (RX) at 2400 baud, both hardware UARTs on the NodeMCU are used. The
-component uses the RX UART (`uart_id`) to read the meter response and the TX UART
-(`uart_out_id`) to send the data request. Other ESP8266 based controllers will work as
-well, but make sure the controller supports two hardware UARTs and check which pins they
-are located at.
+The protocol sends the request at **300 baud** and receives the response at **2400 baud**,
+so both hardware UARTs of the ESP8266 are used: UART0 RX (GPIO3) reads the meter, and
+UART1 TX (GPIO2 / D4) sends the request.
 
-### Parts
+| Optical read head    | NodeMCU pin  |
+|----------------------|--------------|
+| TX (meter → ESP)     | GPIO3 (RX)   |
+| RX (ESP → meter)     | GPIO2 (D4)   |
+| VCC                  | 3.3V         |
+| GND                  | GND          |
 
-- 1 Optical eye, see recommendation above
-- 1 ESP12 NodeMCU
-- Wires
-- Wall plug and USB cable to power the NodeMCU
+> **Note:** TX on the read head goes to **RX** on the ESP and vice-versa. Serial logging
+> should be disabled (`logger:` with `baud_rate: 0`) so console output doesn't collide with
+> meter communication — view logs over the network instead.
 
-## Installation
+## Requirements
 
-Create a companion `secrets.yaml` file next to `uh50reader.yaml` (see
-`secrets.yaml.example`):
+- ESPHome (developed and tested with `2026.6.4`). The component auto-adapts to the
+  `register_action(synchronous=…)` API that newer ESPHome versions introduced, so it also
+  works on older releases.
+- A controller with **two hardware UARTs** (the request and response run at different baud
+  rates simultaneously).
 
-```yaml
-wifi_ssid: <your wifi SSID>
-wifi_password: <your wifi password>
-fallback_password: <fallback AP password>
-ota_password: <the OTA password>
-encryption_key: <the Home Assistant API encryption key>
-```
+## Setup
 
-The `fallback_password` and `ota_password` fields can be set to any password before doing
-the initial upload of the firmware.
+### 1. Add the external component
 
-The component is pulled in via `external_components`, so ESPHome downloads it automatically
-at build time — you do **not** need to clone this repository:
+In your ESPHome YAML, pull the component straight from this repository:
 
 ```yaml
 external_components:
@@ -89,14 +82,73 @@ external_components:
     components: [uh50]
 ```
 
-Then flash the microcontroller:
+### 2. Create `secrets.yaml`
 
-- Install the `esphome` [command line tool](https://esphome.io/guides/getting_started_command_line.html)
-- Plug the microcontroller into your USB port and run `esphome run uh50reader.yaml`
-- Remove the USB connection and connect the microcontroller to the rest of the circuit
-- If everything works, Home Assistant will auto-detect the new ESPHome integration
+Copy `secrets.yaml.example` to `secrets.yaml` and fill in your values. The reference
+configuration uses these secrets:
 
-Check the logs with `esphome logs uh50reader.yaml` (or use the ESPHome dashboard):
+```yaml
+wifi_ssid: "your_wifi_ssid"
+wifi_password: "your_wifi_password"
+fallback_password: "fallback_hotspot_password"
+ota_password: "your_ota_password"
+encryption_key: "your_home_assistant_api_encryption_key"
+```
+
+The `fallback_password` and `ota_password` fields can be set to any password before the
+initial upload.
+
+### 3. Configure the UARTs and sensor
+
+A minimal working configuration:
+
+```yaml
+logger:
+  baud_rate: 0            # disable UART logging; view logs over the network
+
+uart:
+  - id: uart_in           # meter → ESP, response
+    rx_pin: RX            # GPIO3
+    baud_rate: 2400
+    data_bits: 7
+    parity: EVEN
+    stop_bits: 2
+    rx_buffer_size: 2048
+  - id: uart_out          # ESP → meter, request
+    tx_pin: D4            # GPIO2
+    baud_rate: 300
+    data_bits: 7
+    parity: EVEN
+    stop_bits: 2
+
+sensor:
+  - platform: uh50
+    uart_id: uart_in
+    uart_out_id: uart_out
+    update_interval: 30min
+    cumulative_energy:
+      name: "UH50 Cumulative Active Import"
+    cumulative_volume:
+      name: "UH50 Cumulative Volume"
+    current_power:
+      name: "UH50 Current Power"
+    flow_temp:
+      name: "UH50 Flow Temperature"
+    return_temp:
+      name: "UH50 Return Temperature"
+```
+
+See [`uh50reader.yaml`](uh50reader.yaml) for a complete, ready-to-flash example including
+Wi-Fi, the Home Assistant API, OTA and a read button.
+
+### 4. Compile and flash
+
+```bash
+esphome run uh50reader.yaml
+```
+
+If everything works, Home Assistant will auto-detect the new ESPHome integration. Check the
+logs over the network with `esphome logs uh50reader.yaml` (or use the ESPHome dashboard):
 
 ```
 [I][uh50.reader:056]: Data cmd sent
@@ -104,49 +156,95 @@ Check the logs with `esphome logs uh50reader.yaml` (or use the ESPHome dashboard
 [D][sensor:094]: 'UH50 Cumulative Volume': Sending state 1804.89 m3
 ```
 
-## Reading on demand
+## Configuration reference
 
-The meter is read automatically every `update_interval` (30 min by default). To trigger a
-read on demand you can either:
+The `uh50` platform extends the standard ESPHome polling-component and UART-device schemas.
 
-- Add a `read_button:` to the sensor config (shown in `uh50reader.yaml`), which appears as
-  a button entity in Home Assistant, or
-- Call the `uh50.read` action from an ESPHome automation:
+| Option            | Type   | Default | Description                                                        |
+|-------------------|--------|---------|--------------------------------------------------------------------|
+| `uart_id`         | ID     | –       | RX UART bus that reads the meter response (2400 baud, 7E2).        |
+| `uart_out_id`     | ID     | –       | **Required.** TX UART bus that sends the data request (300 baud, 7E2). |
+| `update_interval` | time   | `30min` | How often to poll the meter. For battery meters keep this high.    |
+| `read_button`     | button | –       | Creates a Home Assistant button that triggers an on-demand read.   |
+| `cumulative_energy` … `diff_temp` | sensor | – | Optional sensors (see the table above). Each accepts the usual ESPHome sensor options (`name`, `id`, `filters`, `accuracy_decimals`, …). |
 
-  ```yaml
-  on_...:
-    then:
-      - uh50.read: uh50_reader   # the id of the uh50 sensor platform
-  ```
+Both UARTs must use **7 data bits, even parity, 2 stop bits** — the RX bus at 2400 baud and
+the TX bus at 300 baud.
 
-## Local development
+### On-demand reads
 
-To build against a local checkout of this repository instead of GitHub, point
-`external_components` at the local path:
+Trigger a read from any ESPHome automation with the `uh50.read` action:
 
 ```yaml
-external_components:
-  - source:
-      type: local
-      path: components
-    components: [uh50]
+sensor:
+  - platform: uh50
+    id: heat_meter
+    # ...
+
+# e.g. read whenever a template button is pressed
+button:
+  - platform: template
+    name: "Read Heat Meter Now"
+    on_press:
+      - uh50.read: heat_meter
 ```
 
-## Build and install tips for Windows
+Or expose a dedicated button directly from the platform:
 
-Use the ESPHome docker image to build without installing the build tools:
-
+```yaml
+sensor:
+  - platform: uh50
+    read_button:
+      name: "Read Heat Meter"
 ```
-docker run -p 6052:6052 -v C:\some-directory\esphome-uh50reader:/config -it esphome/esphome
-```
 
-Open a web browser to http://localhost:6052, click install and download the firmware using
-the modern format, then flash it.
+## How it works
 
-## Technical documentation
+Each read cycle runs as a non-blocking state machine:
 
-UH50 overview:
-https://www.landisgyr.com/webfoo/wp-content/uploads/product-files/ConfigInstr_m_T550_UH50_en.pdf
+1. **Request** — send the IEC 62056-21 mode B wake-up sequence and data request
+   (`/#!\r\n`, preceded by NUL wake-up bytes) on the 300-baud TX line.
+2. **Read** — receive the response telegram (`STX … ! CR LF ETX BCC`) on the 2400-baud RX
+   line, accumulating bytes until the ETX terminator (or a timeout).
+3. **Parse & publish** — split the telegram into OBIS `code(value*unit)` records and map
+   the recognised codes to sensors.
 
-IEC 62056 telegram structure:
-http://manuals.lian98.biz/doc.en/html/u_iec62056_struct.htm
+Recognised OBIS codes:
+
+| OBIS   | Sensor              | Unit  |
+|--------|---------------------|-------|
+| `6.8`  | `cumulative_energy` | MWh   |
+| `6.26` | `cumulative_volume` | m³    |
+| `6.4`  | `current_power`     | kW    |
+| `6.27` | `flow_rate`         | m³/h  |
+| `6.29` | `flow_temp`         | °C    |
+| `6.28` | `return_temp`       | °C    |
+| `6.30` | `diff_temp`         | °C    |
+
+> **Meter-specific decoding:** the OBIS codes emitted by the meter vary between firmware
+> revisions. If a value never appears, enable debug logging and inspect the raw telegram —
+> your meter may report that quantity under a different OBIS code than the ones above.
+
+## Troubleshooting
+
+- **No data / "Timed out waiting for telegram":** check that TX/RX aren't swapped, that the
+  read head is seated correctly over the optical port, and that both UARTs are configured
+  (2400 7E2 for RX, 300 7E2 for TX).
+- **Some values never update:** your meter may emit those quantities under different OBIS
+  codes; enable `logger:` at `DEBUG` and inspect the parsed telegram in the logs.
+- **Nothing in the logs about the meter:** remember `logger:` must have `baud_rate: 0`;
+  view logs over the network (`esphome logs uh50reader.yaml`) or the Home Assistant API,
+  not the USB serial console.
+- **Reads are infrequent by design:** the meter is polled on `update_interval` (30 min in
+  the example) to spare the battery. Use the read button/action for an immediate reading.
+
+## References
+
+- UH50 overview:
+  https://www.landisgyr.com/webfoo/wp-content/uploads/product-files/ConfigInstr_m_T550_UH50_en.pdf
+- IEC 62056 telegram structure:
+  http://manuals.lian98.biz/doc.en/html/u_iec62056_struct.htm
+
+## License
+
+[MIT](LICENSE) © Pär Svanström
