@@ -238,6 +238,25 @@ Recognised OBIS codes:
 - **Reads are infrequent by design:** the meter is polled on `update_interval` (30 min in
   the example) to spare the battery. Use the read button/action for an immediate reading.
 
+## Large telegrams and buffer size
+
+Some UH50 units emit a large amount of data around the readout — see
+[issue #11](https://github.com/psvanstrom/esphome-uh50reader/issues/11). The reader skips
+everything before the telegram's `STX` marker, so the meter's preamble no longer needs to
+be buffered, and the telegram body is read into a bounds-checked **2500-byte** internal
+buffer (larger readouts are safely truncated rather than overflowing memory).
+
+If your meter has a particularly large readout you may still need to:
+
+- Raise `rx_buffer_size` on the `uart_in` bus so bytes aren't dropped before the component
+  reads them.
+- Prefer an **ESP32** over an ESP8266 — it has far more RAM for the UART and internal
+  buffers.
+- If the readout itself exceeds 2500 bytes (trailing OBIS codes go missing), enlarge
+  `BUF_SIZE` in `components/uh50/uh50.h`. This requires a local copy of the component —
+  clone this repository and point `external_components` at it with
+  `source: {type: local, path: components}` instead of the `github://` source.
+
 ## References
 
 - UH50 overview:
