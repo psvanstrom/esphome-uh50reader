@@ -8,18 +8,11 @@
 namespace esphome {
 namespace uh50 {
 
-#define BUF_SIZE 10000
-#define WAIT_TIME 9999
+#define BUF_SIZE 4000
 #define READ_TIMEOUT 25000
 #define SILENCE_TIMEOUT 1500
 
-static const byte WAKE_MSG[] = {
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-  0x2F, 0x23, 0x21, 0x0D, 0x0A
-};
+static const byte SIGN_ON_MSG[] = {0x2F, 0x23, 0x21, 0x0D, 0x0A};
 
 class UH50Component : public Component, public uart::UARTDevice, public api::CustomAPIDevice {
  public:
@@ -43,6 +36,7 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
     time_last_run_ = 0;
     register_service(&UH50Component::trigger_read, "start_read_meter");
   }
+  void set_update_interval(uint32_t interval) { update_interval_ = interval; }
 
   void trigger_read() {
     if (state_ == STATE_IDLE) {
@@ -58,21 +52,40 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
       case STATE_IDLE:
         if (manual_trigger_ ||
             (time_last_run_ == 0 && now > 10000UL) ||
-            (time_last_run_ != 0 && now - time_last_run_ > WAIT_TIME * 60000UL)) {
-          state_ = STATE_SEND_WAKEUP;
+            (update_interval_ > 0 && time_last_run_ != 0 && now - time_last_run_ >= update_interval_)) {
+          state_ = STATE_INIT_BAUD;
           manual_trigger_ = false;
           time_last_run_ = now;
+          state_timer_ = now;
         }
         break;
 
-      case STATE_SEND_WAKEUP:
+      case STATE_INIT_BAUD:
         set_baud_(300);
-        delay(50);
-        buf_pos_ = 0;
-        memset(buffer_, 0, BUF_SIZE);
-        write_array(WAKE_MSG, sizeof(WAKE_MSG));
-        state_ = STATE_WAIT_FOR_IDENT;
+        state_ = STATE_WAIT_WAKEUP_DELAY;
         state_timer_ = now;
+        break;
+
+      case STATE_WAIT_WAKEUP_DELAY:
+        if (now - state_timer_ >= 50) {
+          uint8_t nuls[65] = {0};
+          write_array(nuls, 65);
+          state_ = STATE_WAIT_AFTER_WAKEUP;
+          state_timer_ = now;
+        }
+        break;
+
+      case STATE_WAIT_AFTER_WAKEUP:
+        // 65 NUL bytes at 300 baud and 7E2 = 715 bits = ~2.38 seconds transmission time.
+        // IEC 62056-21 requires a 1.5s pause after the wake-up sequence.
+        // Wait 4000ms from enqueue to provide this pause without blocking the ESPHome loop.
+        if (now - state_timer_ >= 4000) {
+          buf_pos_ = 0;
+          memset(buffer_, 0, BUF_SIZE);
+          write_array(SIGN_ON_MSG, sizeof(SIGN_ON_MSG));
+          state_ = STATE_WAIT_FOR_IDENT;
+          state_timer_ = now;
+        }
         break;
 
       case STATE_WAIT_FOR_IDENT:
@@ -88,18 +101,25 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
             uint8_t ack[] = {0x06, 0x30, (uint8_t) speed_char, 0x30, 0x0D, 0x0A};
             write_array(ack, sizeof(ack));
             flush();
-            delay(300);
-            set_baud_(negotiated_baud_);
-            buf_pos_ = 0;
-            memset(buffer_, 0, BUF_SIZE);
-            state_ = STATE_READING_DATA;
+            state_ = STATE_WAIT_BAUD_SWITCH;
             state_timer_ = now;
-            last_rx_time_ = now;
             return;
           }
         }
         if (now - state_timer_ > 5000) state_ = STATE_IDLE;
         break;
+
+      case STATE_WAIT_BAUD_SWITCH:
+        if (now - state_timer_ >= 300) {
+          set_baud_(negotiated_baud_);
+          buf_pos_ = 0;
+          memset(buffer_, 0, BUF_SIZE);
+          state_ = STATE_READING_DATA;
+          state_timer_ = now;
+          last_rx_time_ = now;
+        }
+        break;
+
 
       case STATE_READING_DATA:
         while (available()) {
@@ -121,8 +141,9 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
   }
 
  private:
-  enum State { STATE_IDLE, STATE_SEND_WAKEUP, STATE_WAIT_FOR_IDENT, STATE_READING_DATA };
+  enum State { STATE_IDLE, STATE_INIT_BAUD, STATE_WAIT_WAKEUP_DELAY, STATE_WAIT_AFTER_WAKEUP, STATE_WAIT_FOR_IDENT, STATE_WAIT_BAUD_SWITCH, STATE_READING_DATA };
   State state_{STATE_IDLE};
+  uint32_t update_interval_{0};
   unsigned long time_last_run_{0};
   unsigned long state_timer_{0};
   unsigned long last_rx_time_{0};
@@ -141,13 +162,8 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
       case '4': return 4800;
       case '5': return 9600;
       case '6': return 19200;
-      // Mode B (letters)
-      case 'A': return 600;
-      case 'B': return 1200;
-      case 'C': return 2400;
-      case 'D': return 4800;
-      case 'E': return 9600;
-      case 'F': return 19200;
+      // Mode B letters removed: Mode B switches automatically and does not take the Mode C ACK.
+      // Since this component explicitly sends a Mode C ACK, claiming Mode B support was invalid.
       default:  return 2400;
     }
   }
@@ -175,7 +191,7 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
 
   float extract_value_(const char *buf, const char *code) {
     char search[32];
-    sprintf(search, "%s(", code);
+    snprintf(search, sizeof(search), "%s(", code);
     char *pos = strstr((char *) buf, search);
     while (pos != nullptr) {
       bool fp = false;
@@ -191,7 +207,7 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
 
   float extract_combined_value_(const char *buf, const char *code, int index) {
     char search[32];
-    sprintf(search, "%s(", code);
+    snprintf(search, sizeof(search), "%s(", code);
     char *pos = strstr((char *) buf, search);
     if (pos) {
       char *val = pos + strlen(search);
@@ -206,7 +222,7 @@ class UH50Component : public Component, public uart::UARTDevice, public api::Cus
 
   float extract_history_(const char *buf, const char *code) {
     char search[32];
-    sprintf(search, "%s*01(", code);
+    snprintf(search, sizeof(search), "%s*01(", code);
     char *pos = strstr((char *) buf, search);
     if (pos) return atof(pos + strlen(search));
     return -9999.0f;

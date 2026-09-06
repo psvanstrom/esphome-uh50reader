@@ -13,6 +13,7 @@ from esphome.const import (
     UNIT_KILOWATT,
     UNIT_HOUR,
     UNIT_EMPTY,
+    CONF_UPDATE_INTERVAL,
 )
 from . import uh50_ns, UH50Component
 
@@ -36,6 +37,7 @@ CONF_ERROR_CODE = "error_code"
 CONFIG_SCHEMA = cv.Schema(
     {
         cv.GenerateID(CONF_UH50_ID): cv.use_id(UH50Component),
+        cv.Optional(CONF_UPDATE_INTERVAL): cv.update_interval,
         cv.Optional(CONF_CUMULATIVE_ACTIVE_IMPORT): sensor.sensor_schema(
             unit_of_measurement="MWh",
             accuracy_decimals=3,
@@ -125,6 +127,8 @@ CONFIG_SCHEMA = cv.Schema(
 
 async def to_code(config):
     hub = await cg.get_variable(config[CONF_UH50_ID])
+    if CONF_UPDATE_INTERVAL in config:
+        cg.add(hub.set_update_interval(config[CONF_UPDATE_INTERVAL].total_milliseconds))
 
     if CONF_CUMULATIVE_ACTIVE_IMPORT in config:
         s = await sensor.new_sensor(config[CONF_CUMULATIVE_ACTIVE_IMPORT])
