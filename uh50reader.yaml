@@ -1,70 +1,58 @@
 esphome:
   name: esp-uh50reader
+  friendly_name: UH50 Heat Meter
 
 esp8266:
-  # board d1_mini also works (wemos d1 mini)
   board: nodemcu
+
+external_components:
+  - source:
+      type: local
+      path: components
+    components: [uh50]
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "esp-uh50reader"
     password: !secret fallback_password
 
 captive_portal:
 
-# Uncomment the following 2 lines to enable web-access to the device to view logs and update firmware
-#web_server:
-#  port: 80
+api:
+  encryption:
+    key: !secret encryption_key
+  custom_services: true
 
-# Enable logging
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
 logger:
   level: DEBUG
   baud_rate: 0 # disable logging over uart
 
-# Enable Home Assistant API
-api:
-  encryption:
-    key: !secret encryption_key
-
-ota:
-  platform: esphome
-  password: !secret ota_password
-
-# The protocol requires outgoing communication (TX) at 300 baud and incoming
-# communication (RX) at 2400 baud, so both hardware UARTs of the ESP8266 are used.
+# The new implementation uses a single UART bus and dynamically changes baud rate.
 uart:
-  - id: uart_in
+  - id: uart_bus
     rx_pin: RX
-    baud_rate: 2400
-    data_bits: 7
-    parity: EVEN
-    stop_bits: 2
-    rx_buffer_size: 2048
-  - id: uart_out
-    tx_pin: D4
+    tx_pin: TX
     baud_rate: 300
     data_bits: 7
     parity: EVEN
     stop_bits: 2
+    rx_buffer_size: 10000
 
-external_components:
-  - source: github://psvanstrom/esphome-uh50reader@main
-    components: [uh50]
+uh50:
+  id: uh50_reader
+  uart_id: uart_bus
 
 sensor:
   - platform: uh50
-    uart_id: uart_in
-    uart_out_id: uart_out
-    # The meter is (usually) battery powered, so read it sparingly.
-    update_interval: 30min
-    # Optional on-demand read, exposed to Home Assistant as a button.
-    read_button:
-      name: "UH50 Read Meter"
-    cumulative_energy:
+    uh50_id: uh50_reader
+    cumulative_active_import:
       name: "UH50 Cumulative Active Import"
     cumulative_volume:
       name: "UH50 Cumulative Volume"
@@ -72,9 +60,35 @@ sensor:
       name: "UH50 Current Power"
     flow_rate:
       name: "UH50 Flow Rate"
-    flow_temp:
+    temperature_flow:
       name: "UH50 Flow Temperature"
-    return_temp:
+    temperature_return:
       name: "UH50 Return Temperature"
-    diff_temp:
+    temperature_diff:
       name: "UH50 Diff Temperature"
+    operating_hours:
+      name: "UH50 Operating Hours"
+    max_power_period:
+      name: "UH50 Max Power Period"
+    max_flow_period:
+      name: "UH50 Max Flow Period"
+    max_temp_flow_period:
+      name: "UH50 Max Flow Temperature Period"
+    max_temp_return_period:
+      name: "UH50 Max Return Temperature Period"
+    prev_month_energy:
+      name: "UH50 Previous Month Energy"
+    prev_month_volume:
+      name: "UH50 Previous Month Volume"
+    error_code:
+      name: "UH50 Error Code"
+      entity_category: "diagnostic"
+
+button:
+  - platform: template
+    name: "UH50 Trigger Read"
+    id: btn_read_meter
+    icon: "mdi:refresh"
+    on_press:
+      - lambda: |-
+          id(uh50_reader).trigger_read();
