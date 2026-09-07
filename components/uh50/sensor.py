@@ -1,147 +1,177 @@
-import inspect
-
 import esphome.codegen as cg
 import esphome.config_validation as cv
-from esphome import automation
-from esphome.components import button, sensor, uart
+from esphome.components import sensor
 from esphome.const import (
     CONF_ID,
     DEVICE_CLASS_ENERGY,
     DEVICE_CLASS_POWER,
     DEVICE_CLASS_TEMPERATURE,
-    DEVICE_CLASS_VOLUME,
+    DEVICE_CLASS_WATER,
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,
+    UNIT_CELSIUS,
+    UNIT_KILOWATT,
+    UNIT_HOUR,
+    UNIT_EMPTY,
+    CONF_UPDATE_INTERVAL,
 )
+from . import uh50_ns, UH50Component
 
-CONF_UART_OUT_ID = "uart_out_id"
-CONF_CUMULATIVE_ENERGY = "cumulative_energy"
+CONF_UH50_ID = "uh50_id"
+CONF_CUMULATIVE_ACTIVE_IMPORT = "cumulative_active_import"
 CONF_CUMULATIVE_VOLUME = "cumulative_volume"
 CONF_CURRENT_POWER = "current_power"
 CONF_FLOW_RATE = "flow_rate"
-CONF_FLOW_TEMP = "flow_temp"
-CONF_RETURN_TEMP = "return_temp"
-CONF_DIFF_TEMP = "diff_temp"
-CONF_READ_BUTTON = "read_button"
+CONF_TEMPERATURE_FLOW = "temperature_flow"
+CONF_TEMPERATURE_RETURN = "temperature_return"
+CONF_TEMPERATURE_DIFF = "temperature_diff"
+CONF_OPERATING_HOURS = "operating_hours"
+CONF_MAX_POWER_PERIOD = "max_power_period"
+CONF_MAX_FLOW_PERIOD = "max_flow_period"
+CONF_MAX_TEMP_FLOW_PERIOD = "max_temp_flow_period"
+CONF_MAX_TEMP_RETURN_PERIOD = "max_temp_return_period"
+CONF_PREV_MONTH_ENERGY = "prev_month_energy"
+CONF_PREV_MONTH_VOLUME = "prev_month_volume"
+CONF_ERROR_CODE = "error_code"
 
-DEPENDENCIES = ["uart"]
-AUTO_LOAD = ["sensor", "button"]
-
-uh50_ns = cg.esphome_ns.namespace("uh50")
-UH50Reader = uh50_ns.class_("UH50Reader", cg.PollingComponent, uart.UARTDevice)
-UH50ReadAction = uh50_ns.class_("UH50ReadAction", automation.Action)
-UH50ReadButton = uh50_ns.class_("UH50ReadButton", button.Button)
-
-ENERGY_SCHEMA = sensor.sensor_schema(
-    accuracy_decimals=3,
-    state_class=STATE_CLASS_TOTAL_INCREASING,
-    device_class=DEVICE_CLASS_ENERGY,
-    unit_of_measurement="MWh",
-)
-VOLUME_SCHEMA = sensor.sensor_schema(
-    accuracy_decimals=3,
-    state_class=STATE_CLASS_TOTAL_INCREASING,
-    device_class=DEVICE_CLASS_VOLUME,
-    unit_of_measurement="m³",
-)
-POWER_SCHEMA = sensor.sensor_schema(
-    accuracy_decimals=2,
-    state_class=STATE_CLASS_MEASUREMENT,
-    device_class=DEVICE_CLASS_POWER,
-    unit_of_measurement="kW",
-)
-FLOW_RATE_SCHEMA = sensor.sensor_schema(
-    accuracy_decimals=3,
-    state_class=STATE_CLASS_MEASUREMENT,
-    unit_of_measurement="m³/h",
-)
-TEMP_SCHEMA = sensor.sensor_schema(
-    accuracy_decimals=2,
-    state_class=STATE_CLASS_MEASUREMENT,
-    device_class=DEVICE_CLASS_TEMPERATURE,
-    unit_of_measurement="°C",
-)
-
-CONFIG_SCHEMA = (
-    cv.Schema(
-        {
-            cv.GenerateID(): cv.declare_id(UH50Reader),
-            cv.Required(CONF_UART_OUT_ID): cv.use_id(uart.UARTComponent),
-            cv.Optional(CONF_READ_BUTTON): button.button_schema(
-                UH50ReadButton,
-                icon="mdi:meter-electric",
-            ),
-            cv.Optional(CONF_CUMULATIVE_ENERGY): ENERGY_SCHEMA,
-            cv.Optional(CONF_CUMULATIVE_VOLUME): VOLUME_SCHEMA,
-            cv.Optional(CONF_CURRENT_POWER): POWER_SCHEMA,
-            cv.Optional(CONF_FLOW_RATE): FLOW_RATE_SCHEMA,
-            cv.Optional(CONF_FLOW_TEMP): TEMP_SCHEMA,
-            cv.Optional(CONF_RETURN_TEMP): TEMP_SCHEMA,
-            cv.Optional(CONF_DIFF_TEMP): TEMP_SCHEMA,
-        }
-    )
-    .extend(cv.polling_component_schema("30min"))
-    .extend(uart.UART_DEVICE_SCHEMA)
-)
-
-UH50_READ_ACTION_SCHEMA = cv.Schema(
+CONFIG_SCHEMA = cv.Schema(
     {
-        cv.GenerateID(): cv.use_id(UH50Reader),
+        cv.GenerateID(CONF_UH50_ID): cv.use_id(UH50Component),
+        cv.Optional(CONF_UPDATE_INTERVAL): cv.update_interval,
+        cv.Optional(CONF_CUMULATIVE_ACTIVE_IMPORT): sensor.sensor_schema(
+            unit_of_measurement="MWh",
+            accuracy_decimals=3,
+            device_class=DEVICE_CLASS_ENERGY,
+            state_class=STATE_CLASS_TOTAL_INCREASING,
+        ),
+        cv.Optional(CONF_CUMULATIVE_VOLUME): sensor.sensor_schema(
+            unit_of_measurement="m³",
+            accuracy_decimals=3,
+            device_class=DEVICE_CLASS_WATER,
+            state_class=STATE_CLASS_TOTAL_INCREASING,
+        ),
+        cv.Optional(CONF_CURRENT_POWER): sensor.sensor_schema(
+            unit_of_measurement=UNIT_KILOWATT,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_POWER,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ),
+        cv.Optional(CONF_FLOW_RATE): sensor.sensor_schema(
+            unit_of_measurement="m³/h",
+            accuracy_decimals=3,
+            state_class=STATE_CLASS_MEASUREMENT,
+            icon="mdi:water-pump",
+        ),
+        cv.Optional(CONF_TEMPERATURE_FLOW): sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ),
+        cv.Optional(CONF_TEMPERATURE_RETURN): sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ),
+        cv.Optional(CONF_TEMPERATURE_DIFF): sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class=STATE_CLASS_MEASUREMENT,
+        ),
+        cv.Optional(CONF_OPERATING_HOURS): sensor.sensor_schema(
+            unit_of_measurement=UNIT_HOUR,
+            accuracy_decimals=0,
+            state_class=STATE_CLASS_TOTAL_INCREASING,
+            icon="mdi:clock-outline",
+        ),
+        cv.Optional(CONF_MAX_POWER_PERIOD): sensor.sensor_schema(
+            unit_of_measurement=UNIT_KILOWATT,
+            accuracy_decimals=2,
+            icon="mdi:flash-alert",
+        ),
+        cv.Optional(CONF_MAX_FLOW_PERIOD): sensor.sensor_schema(
+            unit_of_measurement="m³/h",
+            accuracy_decimals=3,
+            icon="mdi:chart-line-variant",
+        ),
+        cv.Optional(CONF_MAX_TEMP_FLOW_PERIOD): sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            icon="mdi:thermometer-chevron-up",
+        ),
+        cv.Optional(CONF_MAX_TEMP_RETURN_PERIOD): sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            icon="mdi:thermometer-chevron-down",
+        ),
+        cv.Optional(CONF_PREV_MONTH_ENERGY): sensor.sensor_schema(
+            unit_of_measurement="MWh",
+            accuracy_decimals=3,
+            icon="mdi:calendar-check",
+        ),
+        cv.Optional(CONF_PREV_MONTH_VOLUME): sensor.sensor_schema(
+            unit_of_measurement="m³",
+            accuracy_decimals=3,
+            icon="mdi:water-check",
+        ),
+        cv.Optional(CONF_ERROR_CODE): sensor.sensor_schema(
+            unit_of_measurement=UNIT_EMPTY,
+            accuracy_decimals=0,
+            icon="mdi:alert-circle",
+        ),
     }
 )
 
 
-# play() only kicks off the async read via the component's loop(); it does not
-# defer play_next_(), so the action itself completes before returning ->
-# synchronous=True. Newer ESPHome versions warn when this is unset; older ones
-# don't accept the argument, so only pass it when supported.
-_READ_ACTION_KWARGS = {}
-if "synchronous" in inspect.signature(automation.register_action).parameters:
-    _READ_ACTION_KWARGS["synchronous"] = True
-
-
-@automation.register_action(
-    "uh50.read",
-    UH50ReadAction,
-    UH50_READ_ACTION_SCHEMA,
-    **_READ_ACTION_KWARGS,
-)
-async def uh50_read_to_code(config, action_id, template_arg, args):
-    var = cg.new_Pvariable(action_id, template_arg)
-    await cg.register_parented(var, config[CONF_ID])
-    return var
-
-
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
-    await cg.register_component(var, config)
-    await uart.register_uart_device(var, config)
+    hub = await cg.get_variable(config[CONF_UH50_ID])
+    if CONF_UPDATE_INTERVAL in config:
+        cg.add(hub.set_update_interval(config[CONF_UPDATE_INTERVAL].total_milliseconds))
 
-    uart_out = await cg.get_variable(config[CONF_UART_OUT_ID])
-    cg.add(var.set_uart_out(uart_out))
-
-    if read_button_config := config.get(CONF_READ_BUTTON):
-        btn = await button.new_button(read_button_config)
-        await cg.register_parented(btn, config[CONF_ID])
-
-    if CONF_CUMULATIVE_ENERGY in config:
-        sens = await sensor.new_sensor(config[CONF_CUMULATIVE_ENERGY])
-        cg.add(var.set_cumulative_energy_sensor(sens))
+    if CONF_CUMULATIVE_ACTIVE_IMPORT in config:
+        s = await sensor.new_sensor(config[CONF_CUMULATIVE_ACTIVE_IMPORT])
+        cg.add(hub.set_cumulative_active_import_sensor(s))
     if CONF_CUMULATIVE_VOLUME in config:
-        sens = await sensor.new_sensor(config[CONF_CUMULATIVE_VOLUME])
-        cg.add(var.set_cumulative_volume_sensor(sens))
+        s = await sensor.new_sensor(config[CONF_CUMULATIVE_VOLUME])
+        cg.add(hub.set_cumulative_volume_sensor(s))
     if CONF_CURRENT_POWER in config:
-        sens = await sensor.new_sensor(config[CONF_CURRENT_POWER])
-        cg.add(var.set_current_power_sensor(sens))
+        s = await sensor.new_sensor(config[CONF_CURRENT_POWER])
+        cg.add(hub.set_current_power_sensor(s))
     if CONF_FLOW_RATE in config:
-        sens = await sensor.new_sensor(config[CONF_FLOW_RATE])
-        cg.add(var.set_flow_rate_sensor(sens))
-    if CONF_FLOW_TEMP in config:
-        sens = await sensor.new_sensor(config[CONF_FLOW_TEMP])
-        cg.add(var.set_flow_temp_sensor(sens))
-    if CONF_RETURN_TEMP in config:
-        sens = await sensor.new_sensor(config[CONF_RETURN_TEMP])
-        cg.add(var.set_return_temp_sensor(sens))
-    if CONF_DIFF_TEMP in config:
-        sens = await sensor.new_sensor(config[CONF_DIFF_TEMP])
-        cg.add(var.set_diff_temp_sensor(sens))
+        s = await sensor.new_sensor(config[CONF_FLOW_RATE])
+        cg.add(hub.set_flow_rate_sensor(s))
+    if CONF_TEMPERATURE_FLOW in config:
+        s = await sensor.new_sensor(config[CONF_TEMPERATURE_FLOW])
+        cg.add(hub.set_temperature_flow_sensor(s))
+    if CONF_TEMPERATURE_RETURN in config:
+        s = await sensor.new_sensor(config[CONF_TEMPERATURE_RETURN])
+        cg.add(hub.set_temperature_return_sensor(s))
+    if CONF_TEMPERATURE_DIFF in config:
+        s = await sensor.new_sensor(config[CONF_TEMPERATURE_DIFF])
+        cg.add(hub.set_temperature_diff_sensor(s))
+    if CONF_OPERATING_HOURS in config:
+        s = await sensor.new_sensor(config[CONF_OPERATING_HOURS])
+        cg.add(hub.set_operating_hours_sensor(s))
+    if CONF_MAX_POWER_PERIOD in config:
+        s = await sensor.new_sensor(config[CONF_MAX_POWER_PERIOD])
+        cg.add(hub.set_max_power_period_sensor(s))
+    if CONF_MAX_FLOW_PERIOD in config:
+        s = await sensor.new_sensor(config[CONF_MAX_FLOW_PERIOD])
+        cg.add(hub.set_max_flow_period_sensor(s))
+    if CONF_MAX_TEMP_FLOW_PERIOD in config:
+        s = await sensor.new_sensor(config[CONF_MAX_TEMP_FLOW_PERIOD])
+        cg.add(hub.set_max_temp_flow_period_sensor(s))
+    if CONF_MAX_TEMP_RETURN_PERIOD in config:
+        s = await sensor.new_sensor(config[CONF_MAX_TEMP_RETURN_PERIOD])
+        cg.add(hub.set_max_temp_return_period_sensor(s))
+    if CONF_PREV_MONTH_ENERGY in config:
+        s = await sensor.new_sensor(config[CONF_PREV_MONTH_ENERGY])
+        cg.add(hub.set_prev_month_energy_sensor(s))
+    if CONF_PREV_MONTH_VOLUME in config:
+        s = await sensor.new_sensor(config[CONF_PREV_MONTH_VOLUME])
+        cg.add(hub.set_prev_month_volume_sensor(s))
+    if CONF_ERROR_CODE in config:
+        s = await sensor.new_sensor(config[CONF_ERROR_CODE])
+        cg.add(hub.set_error_code_sensor(s))

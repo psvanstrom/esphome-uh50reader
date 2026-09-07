@@ -1,0 +1,3991 @@
+Statischer Wärme- und Kältezähler
+T550 (UH50…)
+Wohnbereich; Nah- und Fernwärmeversorgung
+
+ULTRAHEAT®T550 (UH50…)
+ULTRACOLD®T550 (UH50…)
+Durchflusssensor T550 (UH50…)
+
+Technische Beschreibung
+32 16 000 001 j
+Datum: 12.01.2021
+Landis+Gyr GmbH
+
+Herausragende Eigenschaften
+
+2/51
+
+Herausragende Eigenschaften
+Zähler zur Messung von Durchfluss und Energie in einem wassergeführten Heiz- oder
+Kältekreislauf mit Ultraschalltechnologie.
+Seine Hauptmerkmale sind:
+•
+
+Verschleißfrei, da ohne bewegliche Teile
+
+•
+
+Messbereich Durchfluss 1:100 nach EN1434:2007, gesamt 1:1.000
+
+•
+
+Leistungsmessung mit Maxima, Tarife wählbar
+
+•
+
+Datenlogger zur Anlagenüberwachung
+
+•
+
+60 Monatswerte
+
+•
+
+Logbuch
+
+•
+
+Batterie oder Netzbetrieb
+
+•
+
+Optische Schnittstelle nach EN 62056-21:2002
+
+•
+
+Große Auswahl an Kommunikationsmodulen für Fernauslesung und Systemanbindung
+
+•
+
+2 Modulsteckplätze zur gleichzeitigen Verwendung von 2 Kommunikationsmodulen
+
+•
+
+Einsatz auch als Durchfluss-, Kälte- oder kombinierten Wärme-/Kältezähler möglich
+
+•
+
+Selbstdiagnose
+
+Inhaltsverzeichnis
+
+3/51
+
+Inhaltsverzeichnis
+1
+
+Allgemeines _____________________________________________________________ 5
+Weitere verfügbare Dokumentationen__________________________________________ 5
+
+2
+
+Sicherheitshinweise _______________________________________________________ 6
+
+3
+
+Technische Daten_________________________________________________________ 8
+Kleine Zähler (qp 0,6 – 2,5 m³/h)_____________________________________________ 10
+Große Zähler mit Gewindeanschluss _________________________________________ 11
+Große Zähler mit Flanschanschluss __________________________________________ 12
+Große Zähler qp 150 ______________________________________________________ 12
+
+4
+
+Einbindung _____________________________________________________________ 13
+Hinweise zum Einbau _____________________________________________________ 13
+Beispiele für die Einbindung ________________________________________________ 14
+Montagehinweis für Adapterset (Fühler direkt tauchend) __________________________ 15
+4.1
+
+Einbau bei Kältezählung _________________________________________________ 15
+
+4.2
+
+Einbau des qp 150 _____________________________________________________ 15
+
+5
+
+Maße Rechenwerk _______________________________________________________ 16
+
+6
+
+Bedienelemente _________________________________________________________ 17
+6.1
+
+Aktuellen Zählerstand anzeigen ___________________________________________ 18
+Übersicht der Schleifen (LOOPs) ____________________________________________ 18
+Nutzerschleife „LOOP 0“ ___________________________________________________ 18
+Serviceschleife 1 „LOOP 1“ _________________________________________________ 19
+Serviceschleife 2 „LOOP 2“ _________________________________________________ 19
+Serviceschleife 3 „LOOP 3“ _________________________________________________ 20
+Serviceschleife 4 „LOOP 4“ _________________________________________________ 21
+
+6.2
+
+Vorjahreswerte ________________________________________________________ 22
+
+6.3
+
+Monatswerte __________________________________________________________ 22
+
+7
+
+Auflösung der Anzeige ___________________________________________________ 23
+
+8
+
+Spannungsversorgung ___________________________________________________ 24
+Automatische Netzerkennung _______________________________________________ 24
+Anforderungen Spannungsversorgung ________________________________________ 24
+Spannungsmodule _______________________________________________________ 25
+
+9
+
+Kommunikation _________________________________________________________ 26
+Schnittstellen des Rechenwerkes ____________________________________________ 26
+Zulässige Kombinationen von Modulen _______________________________________ 27
+Anschlussklemmen _______________________________________________________ 27
+9.1
+
+Impuls-Modul _________________________________________________________ 28
+
+9.2
+
+M-Bus Modul G4 ______________________________________________________ 28
+
+9.3
+
+M-Bus Modul MI mit 2 Impulseingängen ____________________________________ 29
+
+9.4
+
+Analog-Modul _________________________________________________________ 30
+
+9.5
+
+Funk-Modul 868 MHz (Wireless M-Bus) ____________________________________ 30
+
+9.6
+
+Funk-Modul 868 MHz LoRaWAN (WZU-LoRa; WZU-LoRa-EXT) _________________ 31
+
+9.7
+
+Funk-Modul NB-IoT (WZU-NB-IoT-EXT) ____________________________________ 31
+
+9.8
+
+GPRS-Modul _________________________________________________________ 32
+
+9.9
+
+BACnet Modul (WZU-485E-BAC) _________________________________________ 33
+
+Inhaltsverzeichnis
+9.10
+
+4/51
+
+Modbus Modul (WZU-485E-MOD) _________________________________________34
+
+10
+
+Tarifsteuerung (optional) __________________________________________________35
+Schwellwerttarif (Tarife T2, T3, T4, T5, T6) ____________________________________ 35
+Angelieferte Energie / Adjusted Energy (Tarif T7) _______________________________ 35
+Rückgelieferte Energie (Tarif T8) ____________________________________________ 35
+Wärme-/Kältezähler (Tarif T9) ______________________________________________ 36
+Tarifsteuerung über Zeitschaltuhr (Tarif T10) __________________________________ 36
+Tarifsteuerung über M-Bus (Tarif T11) _______________________________________ 36
+Aufpreismengentarif mittels Rücklauftemperatur (Tarif T12) _______________________ 36
+Anzeige der Tarifsituation auf der LCD _______________________________________ 36
+
+11
+
+Fehlermeldungen ________________________________________________________38
+
+12
+
+Log-Funktionen __________________________________________________________40
+
+13
+
+Datenlogger (optional) ____________________________________________________42
+
+14
+
+Zusätzliche Optionen _____________________________________________________43
+
+15
+
+Bestellbezeichnungen (Typenschlüssel) _____________________________________44
+
+16
+
+Zusatzbestellangaben für Funk-Modul 868 MHz (Wire-less M-Bus EN13757-4, OMS
+v2.0) ___________________________________________________________________47
+
+17
+
+Zusatzbestellangaben für Funk-Modul 868 MHz (Wire-less M-Bus EN13757-4, OMS
+v4.1.2) __________________________________________________________________48
+
+18
+
+Druckverlust ____________________________________________________________49
+
+Allgemeines
+
+1
+
+5/51
+
+Allgemeines
+Hinweis: Im nachfolgenden Text steht der Begriff Zähler sowohl
+für den Wärmezähler als auch für den Kältezähler und den Durchflusszähler, falls nicht anderweitig unterschieden wird.
+Der Zähler dient dazu, die verbrauchte Wärme bzw. Kälte in heizungstechnischen Anlagen zu messen.
+Der Zähler besteht aus einem Volumenmessteil, zwei Temperaturfühlern und
+einem Rechenwerk, welches aus Volumen und Temperaturdifferenz den Energieverbrauch berechnet.
+Der Zähler kombiniert moderne Mikrocomputertechnik mit einer innovativen
+Ultraschallmesstechnik, bei der keinerlei mechanisch bewegte Teile notwendig sind.
+Diese Technik ist somit verschleißfrei, robust und weitgehend wartungsfrei.
+Hohe Genauigkeit und Langzeitstabilität garantieren exakte und gerechte Kostenabrechnungen.
+
+Weitere verfügbare Dokumentationen
+•
+•
+•
+•
+
+Bedienungsanleitung T550 (UH50…)
+Montageanleitung T550 (UH50…)
+Jeweilige Modulanleitung
+Zubehörliste
+
+Weitere Informationen erhalten Sie auf Anfrage.
+
+Sicherheitshinweise
+
+2
+
+6/51
+
+Sicherheitshinweise
+Die Zähler dürfen nur in gebäudetechnischen Anlagen und
+nur für die beschriebenen Anwendungen eingesetzt werden.
+Die örtlichen Vorschriften (Installation, etc.) sind einzuhalten.
+Beim Einsatz sind die Betriebsbedingungen laut Typenschild einzuhalten. Nichtbeachtung kann Gefahrensituationen hervorrufen und führt zum Erlöschen aller Ansprüche
+aus Mängelhaftung sowie auch der Haftung auf Basis etwaiger ausdrücklich gewährter Garantien.
+Anforderungen an Kreislaufwasser (CEN / TR 16911:2016)
+einhalten.
+Der Zähler ist nur für Kreislaufwasser von heizungstechnischen Anlagen geeignet.
+Der Zähler ist nicht für Trinkwasser geeignet.
+Den Zähler nicht am Rechenwerk anheben.
+Auf scharfkantige Stellen an Gewinde, Flansch und Messrohr achten.
+Nur geschultes Personal in der Installation und dem Betreiben von Zählern in heizungs-/ kältetechnischen Anlagen
+darf den Zähler ein- und ausbauen.
+Zähler nur in druckloser Anlage ein- oder ausbauen.
+Nach Einbau des Zählers die Dichtheit des Systems überprüfen.
+Mit dem Brechen der eichrelevanten Sicherungsmarke erlöschen Gewährleistung und Eichgültigkeit.
+Reinigen Sie den Zähler nur von außen mit einem weichen, leicht angefeuchteten Tuch. Verwenden Sie keinen
+Spiritus und keine Reinigungsmittel.
+Die Ausführungen 110 V / 230 V dürfen nur von einem
+Elektriker angeschlossen werden.
+Der Zähler darf erst unter Spannung gesetzt werden, wenn
+die Montage vollständig erfolgt ist. An den Klemmen besteht sonst Gefahr von elektrischem Schlag.
+Ein defektes oder offensichtlich beschädigtes Gerät muss
+unverzüglich von der Spannungsversorgung getrennt und
+ersetzt werden.
+
+Sicherheitshinweise
+
+7/51
+
+Der Zähler gilt für die Entsorgung als Elektronik-Altgerät im
+Sinne der Europäischen Richtlinie 2012/19/EU (WEEE)
+und darf nicht als Hausmüll entsorgt werden. Die entsprechenden nationalen, gesetzlichen Vorschriften sind zu beachten und das Gerät ist über die dazu vorgesehenen Kanäle zu entsorgen. Die örtliche und aktuell gültige Gesetzgebung ist zu beachten.
+Der Zähler enthält Lithium-Batterien. Den Zähler und die
+Batterien nicht über den Hausmüll entsorgen. Beachten
+Sie die lokalen Bestimmungen und Gesetze zur Entsorgung.
+Sie können die Lithium-Batterien nach Gebrauch zur fachgerechten Entsorgung dem Hersteller zurückgeben. Beachten Sie beim Versand die gesetzlichen Vorschriften,
+welche u.a. die Deklaration und Verpackung von Gefahrgut regeln.
+Die Batterien nicht öffnen. Batterien nicht mit Wasser in
+Berührung bringen oder Temperaturen größer 80 °C aussetzen.
+Der Zähler besitzt keinen Blitzschutz. Blitzschutz über die
+Hausinstallation sicherstellen.
+Nur ein Fach für die Spannungsversorgung bestücken.
+Rote Sperrklappe nicht entfernen.
+
+Technische Daten
+
+3
+
+8/51
+
+Technische Daten
+Allgemein
+Messgenauigkeit
+Umgebungsklasse
+Mechanische Klasse
+Elektromagnetische Klasse
+
+Klasse 2 oder 3 (EN 1434)
+A (EN 1434) für Innenrauminstallation
+M1 *)
+E1 *)
+*) nach 2004/22/EC Messgeräte-Richtlinie
+
+Umgebungsfeuchte
+Max. Höhe
+Lagertemperatur
+
+< 93 % rel. F. bei 25 °C
+nicht kondensierend
+2000 m ü. NN
+-20 … 60 °C
+
+Rechenwerk
+Umgebungstemperatur
+Gehäuseschutzart
+Schutzklasse
+Netz 110 / 230 V AC
+Netz 24 V ACDC
+Ansprechgrenze f. T
+Temperaturdifferenz T
+Temperaturmessbereich
+LCD
+Optische Schnittstelle
+Kommunikation
+Splitbarkeit
+
+5 … 55 °C
+IP 54 nach EN 60529
+II nach EN 61558
+III nach EN 61558
+0,2 K
+3 K … 120 K
+0 ... 180 °C
+7-stellig
+Serienmäßig, EN 62056-21
+Optional, z. B. M-Bus
+Immer abnehmbar,
+Kabellänge optional
+
+Temperaturfühler
+Typ
+Temperaturbereich
+
+Pt 500 oder Pt 100 nach EN 60751
+0 ... 150 °C (bis 45 mm Baulänge)
+0 ... 180 °C (ab 100 mm Baulänge)
+
+Volumenmessteile
+Schutzklasse
+Einbauort
+Einbaulage
+Beruhigungsstrecke
+Messbereich
+Temperaturbereich
+
+empfohlen für...
+...Wärmeanwendungen
+...Kälteanwendungen
+Maximale Überlast
+Nenndruck
+
+IP 54 / IP 65 / IP 68 nach EN 60529
+Warme Seite / kalte Seite
+Beliebig
+Keine
+1:100
+5 … 130 °C
+Nationale Zulassungen können davon abweichen.
+10 … 130 °C
+5 … 50 °C
+2,8 × qp
+PN16 (PS16), PN25 (PS25)
+
+Anschluss
+
+Maximalfluss
+qs
+
+Minimalfluss
+qi
+
+Ansprechgrenze
+(variabel)
+
+Druckverlust bei
+qp
+
+Kv-Durchfluss bei
+Δp 1 bar
+
+Kv-Durchfluss bei
+Δp 100 mbar
+
+Gewicht
+
+m3/h
+0,6
+0,6
+0,6
+1,5
+1,5
+1,5
+1,5
+2,5
+2,5
+2,5
+3,5
+3,5
+6
+6
+6
+10
+10
+10
+15
+15
+25
+40
+60
+150
+
+Baulänge
+
+9/51
+
+Nenndurchfluss
+qp
+
+Technische Daten
+
+mm
+
+G/DN
+
+m3/h
+
+l/h
+
+l/h
+
+mbar
+
+m3/h
+
+m3/h
+
+kg
+
+3
+
+1,2
+1,2
+1,2
+3
+3
+3
+3
+5
+5
+5
+7
+7
+12
+12
+12
+20
+20
+20
+30
+30
+50
+80
+120
+300
+
+6
+6
+6
+15
+15
+15
+15
+25
+25
+25
+35
+35
+60
+60
+60
+100
+100
+100
+150
+150
+250
+400
+600
+1500
+
+2,4
+2,4
+2,4
+6
+6
+6
+6
+10
+10
+10
+14
+14
+24
+24
+24
+40
+40
+40
+60
+60
+100
+160
+240
+600
+
+150
+150
+150
+170
+160
+160
+160
+200
+210
+210
+55
+55
+190
+140
+140
+130
+110
+130
+95
+110
+105
+160
+115
+120
+
+1,5
+1,5
+1,5
+3,9
+3,8
+3,8
+3,8
+5,6
+5,3
+5,3
+15
+15
+14
+16
+16
+28
+30
+28
+49
+45
+77
+100
+177
+433
+
+0,5
+0,5
+0,5
+1,2
+1,2
+1,2
+1,2
+1,8
+1,7
+1,7
+4,7
+4,7
+4,4
+5,1
+5,1
+8,8
+9,5
+8,8
+15,4
+14,3
+24,4
+31,6
+56,0
+136,9
+
+1
+1,5
+3
+1
+1,5
+1,5
+3
+1,5
+1,5
+3
+3
+5
+3
+3
+5
+2,6
+4
+7
+5
+8
+11
+13
+22
+50*)
+
+110
+G /4
+190
+G1
+190
+DN20
+110
+G 3/4
+130
+G1
+190
+G1
+190
+DN20
+130
+G1
+190
+G1
+190
+DN20
+260
+G 1 1/4
+260
+DN25
+150
+G 1 1/4
+260
+G 1 1/4
+260
+DN25
+200
+G2
+300
+G2
+300
+DN40
+200
+DN50
+270
+DN50
+300
+DN65
+300
+DN80
+360
+DN100
+500
+DN150
+*) Messeinsatz 4 kg
+
+Toleranz beim Druckverlust: +/- 5%
+
+Technische Daten
+
+10/51
+
+Kleine Zähler (qp 0,6 – 2,5 m³/h)
+
+Abb. 1: Übersicht Maße Baulänge 110 mm
+
+Abb. 2: Übersicht Maße Baulänge 130 mm (Gewinde)
+
+Abb. 3: Übersicht Maße Baulänge 190 mm (Gewinde)
+
+Bestell-Nr.
+UH50-x03
+UH50-x04
+UH50-x05
+UH50-x06
+UH50-x07
+UH50-x09
+UH50-x21
+UH50-x22
+UH50-x23
+UH50-x25
+UH50-x26
+UH50-x27
+UH50-x36
+UH50-x37
+UH50-x38
+UH50-x40
+
+qp
+
+PN
+
+a
+
+b
+
+c
+
+m³/h
+0,6
+0,6
+0,6
+0,6
+0,6
+0,6
+1,5
+1,5
+1,5
+1,5
+1,5
+1,5
+2,5
+2,5
+2,5
+2,5
+
+bar
+16
+25
+16
+25
+16
+25
+16
+25
+16
+25
+16
+25
+16
+25
+16
+25
+
+mm
+130
+130
+110
+110
+190
+190
+110
+110
+190
+190
+130
+130
+130
+130
+190
+190
+
+mm
+G1
+G1
+G¾
+G¾
+G1
+G1
+G¾
+G¾
+G1
+G1
+G1
+G1
+G1
+G1
+G1
+G1
+
+mm
+58
+58
+48
+48
+88
+88
+48
+48
+88
+88
+58
+58
+58
+58
+95
+95
+
+Technische Daten
+
+11/51
+
+Abb. 4: Übersicht Maße Baulänge 190 mm (Flansch)
+
+Bestell-Nr.
+UH50-x08
+UH50-x24
+UH50-x39
+
+qp
+
+PN
+
+Baulänge
+
+m³/h
+0,6
+1,5
+2,5
+
+bar
+25
+25
+25
+
+mm
+190
+190
+190
+
+Anschluss
+DN20
+DN20
+DN20
+
+Große Zähler mit Gewindeanschluss
+
+Abb. 5: Übersicht Maße große Zähler mit Gewindeanschluss
+
+Bestell-Nr.
+UH50-x45
+UH50-x47
+UH50-x50
+UH50-x60
+UH50-x63
+
+qp
+
+PN
+
+a
+
+b
+
+m³/h
+3,5
+3,5
+6
+10
+10
+
+bar
+16
+25
+16
+16
+16
+
+mm
+260
+260
+260
+300
+200
+
+mm
+59
+59
+59
+59
+59
+
+c
+G 1¼ B
+G 1¼ B
+G 1¼ B
+G2B
+G2B
+
+Abb. 6: Übersicht Maße großer Zähler qp 6 mit Gewindeanschluss (Kurzbaulänge)
+
+Bestell-Nr.
+UH50-x55
+
+qp m³/h
+
+PN bar
+
+m³/h
+6
+
+bar
+16
+
+c
+G 1¼ B
+
+Technische Daten
+
+12/51
+
+Große Zähler mit Flanschanschluss
+
+Abb. 7: Übersicht Maße große Zähler mit Flanschanschluss
+
+BestellNr.
+UH50x46
+UH50x52
+UH50x61
+UH50x65
+UH50x69
+UH50x70
+UH50x74
+UH50x82
+UH50x83
+
+qp
+
+PN
+DN
+
+a
+
+b
+
+Øc
+
+Ød
+
+Øe
+
+mm
+
+mm
+
+mm
+
+mm
+
+mm
+
+Lochanzahl
+
+f
+
+g
+
+mm
+
+mm
+
+m³/h
+
+bar
+
+3,5
+
+25
+
+25
+
+260
+
+59
+
+112
+
+85
+
+14
+
+4
+
+60
+
+19
+
+6
+
+25
+
+25
+
+260
+
+59
+
+112
+
+85
+
+14
+
+4
+
+60
+
+19
+
+10
+
+25
+
+40
+
+300
+
+59
+
+140
+
+110
+
+18
+
+4
+
+90
+
+19
+
+15
+
+25
+
+50
+
+270
+
+59
+
+155
+
+125
+
+18
+
+4
+
+102
+
+20
+
+15
+
+25
+
+50
+
+200
+
+59
+
+155
+
+125
+
+18
+
+4
+
+102
+
+20
+
+25
+
+25
+
+65
+
+300
+
+52
+
+185
+
+145
+
+18
+
+8
+
+122
+
+22
+
+40
+
+25
+
+80
+
+300
+
+56
+
+200
+
+160
+
+18
+
+8
+
+138
+
+24
+
+60
+
+16
+
+100
+
+360
+
+68
+
+235
+
+180
+
+18
+
+8
+
+158
+
+24
+
+60
+
+25
+
+100
+
+360
+
+68
+
+235
+
+190
+
+22
+
+8
+
+158
+
+24
+
+a
+
+b
+
+Øc
+
+Ød
+
+Øe
+
+f
+
+g
+
+mm
+
+mm
+
+mm
+
+mm
+
+mm
+
+Lochanzahl
+
+mm
+
+mm
+
+Große Zähler qp 150
+
+Abb. 8: Übersicht Maße großer Zähler qp 150
+
+BestellNr.
+UH50xA1
+UH50xA2
+
+qp
+
+PN
+DN
+
+m³/h
+
+bar
+
+150
+
+16
+
+150
+
+500
+
+91
+
+300
+
+240
+
+23
+
+8
+
+211
+
+31
+
+150
+
+25
+
+150
+
+500
+
+91
+
+300
+
+250
+
+28
+
+8
+
+211
+
+31
+
+Einbindung
+
+4
+
+13/51
+
+Einbindung
+Gehen Sie zum Einbinden des Zählers wie folgt vor:
+• Bestimmen Sie den Einbauort entsprechend der Beschriftung am Zähler.
+Hinweis: Bei einem Wärmezähler oder kombinierten Wärme-/
+Kältezähler entspricht der Einbauort kalte Seite dem Rücklauf und
+der Einbauort warme Seite dem Vorlauf.
+Hinweis: Bei einem Kältezähler entspricht der Einbauort warme
+Seite dem Rücklauf und der Einbauort kalte Seite dem Vorlauf.
+•
+•
+•
+•
+
+•
+•
+•
+
+Beachten Sie die Abmessungen des Zählers und prüfen Sie, ob genügend
+Freiraum vorhanden ist.
+Spülen Sie die Anlage vor dem Einbauen des Zählers gründlich.
+Bauen Sie den Zähler senkrecht oder waagerecht zwischen zwei Absperrschiebern so ein, dass der Pfeil auf dem Gehäuse und die Strömungsrichtung übereinstimmen. Beachten Sie dazu die Beispiele für die Einbindung.
+Bauen Sie die Temperaturfühler im selben Kreislauf wie den Zähler ein.
+Hinweis: Bauen Sie die Temperaturfühler bei Zählern bis qp 6 und
+bis PN16 direkt tauchend ein. Nur bei höherer Beanspruchung sind
+Tauchhülsen zu verwenden.
+Verplomben Sie Temperaturfühler und Verschraubungen zum Schutz vor
+Manipulation.
+Lösen Sie das für den Transport vorgesehene Gummiband bzw. den Kabelbinder der Kabel vom Volumenmessteil. Im Betrieb sollen Temperaturfühlerkabel und Steuerleitung nicht direkt am Volumenmessteil anliegen.
+Wenn Sie den Zähler als Kältezähler einbauen, beachten Sie die entsprechenden Hinweise.
+
+Hinweise zum Einbau
+Ein- oder Auslaufstrecken sind nicht notwendig. Wenn Sie den Zähler im gemeinsamen Rücklauf zweier Kreise einbauen, bestimmen Sie einen Einbauort
+mit einem Mindestabstand von 10 × DN vom T-Stück. Dieser Abstand sichert
+ein gutes Durchmischen der unterschiedlichen Wassertemperaturen. Sie können die Temperaturfühler je nach Ausführung in T-Stücke, Kugelventile, direkt
+tauchend oder in Tauchhülsen einbauen. Die Temperaturfühlerenden müssen
+mindestens bis in die Mitte des Rohrquerschnitts reichen.
+Hinweis: Stellen Sie beim Einbau sicher, dass im Betrieb kein
+Wasser in das Rechenwerk gelangen kann.
+
+Einbindung
+
+14/51
+
+Beispiele für die Einbindung
+Kugelventil
+
+Abb. 9: Einbindung mit Kugelventil (empfohlen bis einschließlich qp 6)
+
+Einschweißmuffe mit Tauchhülse
+
+Abb. 10: Einbindung mit Tauchhülsen (empfohlen ab qp 10)
+
+Abb. 11: Einbindung für Kreislauf mit Beimischung; Platzierung der Temperaturfühler
+
+Abb. 12: Einbindung für Kreislauf mit z. B. Drosselschaltung (Durchflusssensor in Fließrichtung vor Regelventil / Differenzdruckregler)
+
+Einbindung
+
+15/51
+
+Montagehinweis für Adapterset (Fühler direkt tauchend)
+Für Zähler mit Temperaturfühler Ø 5,2 × 45 mm liegt ein Montageset bei. Hiermit können Sie den Fühler z. B. in ein Einbaustück oder einen Kugelhahn direkt tauchend montieren.
+1. Bauen Sie den O-Ring mit beiliegender Montagehilfe/-stift in die
+Einbaustelle ein.
+2. Legen Sie beide Hälften der Kunststoffverschraubung um die
+3 Aussparungen des Fühlers.
+3. Pressen Sie die Verschraubung zusammen und schrauben Sie die
+Verschraubung bis zum Anschlag in die Einbaustelle handfest ein
+(Anzugsmoment 3 … 5 Nm).
+
+Abb. 13: Montage Adapterset
+
+4.1 Einbau bei Kältezählung
+Beachten Sie beim Einbauen als Kältezähler oder kombinierten Wärme-/ Kältezähler, dass die schwarze Abdeckung am Messrohr zur Seite oder nach unten gerichtet ist, um Probleme mit sich bildendem Kondenswasser zu vermeiden. Montieren Sie die Tauchhülsen so, dass der Fühler waagerecht oder
+senkrecht nach unten steht.
+Montieren Sie das Rechenwerk getrennt vom Durchflussmessrohr, z. B. an
+der Wand. Bilden Sie eine Schlaufe nach unten, um zu vermeiden, dass Kondenswasser entlang der angeschlossenen Leitungen ins Rechenwerk laufen
+kann.
+
+Schallkopfabdeckung
+Abb. 14: Empfohlene Einbaulage bei Kältezählung
+
+4.2 Einbau des qp 150
+Hinweis: Zum Einbau der Armatur in die Rohrleitung, Flanschschrauben mit mindestens 100 mm Länge verwenden.
+Als Montagehilfe sind zwei Gewinde M10 am Flansch angebracht. Die Gewinde ermöglichen die Verwendung von Edelstahl-Ringschrauben z. B. für
+eine Hebeeinrichtung.
+Hinweis: Um einen einfachen Austausch des Messeinsatzes durchzuführen, sollte der Messeinsatz im Volumenmessteil nach oben gerichtet sein.
+
+Maße Rechenwerk
+
+5
+
+16/51
+
+Maße Rechenwerk
+
+Abb. 15: Maße Rechenwerk
+
+Abb. 16: Draufsicht und Querschnitt von der Adapterplatte
+
+Bedienelemente
+
+6
+
+17/51
+
+Bedienelemente
+
+1
+
+2
+
+Abb. 17: Bedienelemente
+
+Nr.
+1
+
+Bezeichnung
+Service Taste
+
+2
+
+Taste 2
+
+3
+
+Taste 1
+
+4
+
+Optische
+Schnittstelle
+
+4
+
+3
+
+Beschreibung
+Hinweis
+Zum Aufrufen der Nach Abnahme des Deckels
+Parametrierfunktion zugänglich
+des Zählers.
+Schaltet innerhalb
+einer Schleife auf
+die nächste Zeile.
+Schaltet auf die
+nächste Schleife.
+Ermöglicht den Datenverkehr über einen Rechner mit
+der
+zugehörigen
+Service Software.
+
+Bedienelemente
+
+18/51
+
+6.1 Aktuellen Zählerstand anzeigen
+Der Zähler zeigt den aktuellen Zählerstand in kWh, MWh, MJ oder GJ an.
+Hinweis: Um Fehler beim Ablesen zu vermeiden, sind die
+Nachkommastellen von angezeigten Werten durch eine Umrahmung gekennzeichnet.
+Hinweis: Geeichte Werte sind an einem zusätzlich angezeigten Stern-Symbol erkennbar.
+Hinweis: Je nach Geräteparametrierung können sowohl Anzeigeumfang als auch angezeigte Daten von dieser Beschreibung abweichen. Darüber hinaus können bestimmte Tastenfunktionen gesperrt sein.
+
+Übersicht der Schleifen (LOOPs)
+Nutzerschleife
+Serviceschleife 1
+Serviceschleife 2
+
+...
+
+...
+Nutzerschleife
+
+Nach der letzten Schleife erscheint wieder die Nutzerschleife LOOP 0.
+
+Nutzerschleife „LOOP 0“
+Die LCD zeigt nacheinander folgende Werte:
+aufgelaufene Energie mit Tarifstatus
+Tarifregister 1 (optional)
+aufgelaufenes Volumen
+Segmenttest
+Schleifenkopf
+Fehlermeldung mit Fehlerkennzahl (nur
+wenn Fehler vorhanden)
+
+Bedienelemente
+
+19/51
+
+Serviceschleife 1 „LOOP 1“
+Die Serviceschleife 1 zeigt die Details der aktuellen Messung an.
+Die LCD zeigt nacheinander folgende Werte:
+Schleifenkopf
+aktueller Durchfluss
+aktuelle Leistung
+TV aktuelle Temperatur warme Seite,
+TR aktuelle Temperatur kalte Seite;
+im 2 s-Wechsel
+Betriebszeit
+Betriebszeit mit Durchfluss
+Fehlzeit
+Eigentumsnummer, 8-stellig
+Datum
+Jahres-Stichtag (TT.MM)
+Energie Vorjahr am Stichtag
+Volumen Vorjahr am Stichtag
+Firmware-Version
+
+Serviceschleife 2 „LOOP 2“
+Die Serviceschleife 2 zeigt die Messperiode für die Ermittlung des Maximums.
+Die LCD zeigt nacheinander folgende Werte:
+Schleifenkopf
+Messperiode für Ermittlung des Maximums
+
+Bedienelemente
+
+20/51
+
+Serviceschleife 3 „LOOP 3“
+Die Serviceschleife 3 zeigt die Monatswerte an.
+Schleifenkopf
+
+…
+
+…
+Stichtag für Juli 2011
+
+Die LCD zeigt nacheinander folgende Werte:
+Energie am Stichtag
+Tarifregister 1 am Stichtag
+Volumen am Stichtag
+max. Durchfluss am Stichtag,
+im 2 s-Wechsel mit Datumsstempel
+max. Leistung am Stichtag,
+im 2 s-Wechsel mit Datumsstempel
+
+max. Temperaturen am Stichtag,
+im 2 s-Wechsel mit Datumsstempel
+MV für warme Seite
+bzw. MR für kalte Seite
+
+Fehlzeitzähler am Stichtag
+Nach der letzten Anzeige wird wieder der vorher gewählte Stichtag angezeigt.
+Hinweis: Wird die Anzahl der auszulesenden Monate mit der Service Software geändert, hat dies auch Auswirkungen auf die Anzahl der aufrufbaren Monate in der LCD.
+
+Bedienelemente
+
+21/51
+
+Serviceschleife 4 „LOOP 4“
+Die Serviceschleife 4 zeigt Geräteparameter an.
+Die LCD zeigt nacheinander folgende Werte:
+Schleifenkopf
+aktueller Tarif,
+im 2s- Wechsel mit Schwellwert 1
+Messintervall Durchfluss
+Messintervall Temperatur
+Modul 1: M-Bus-Modul
+M-Bus-Primäradresse 1
+M-Bus-Sekundäradresse 8-stellig
+Modul 2: Impuls-Modul; Kanal 1 = Energie,
+Kanal 2 = Volumen; im 2 s-Wechsel
+Wertigkeit für Energieimpulse *)
+Wertigkeit für Volumenimpulse *)
+Impulsdauer in ms *)
+*) für „schnelle Impulse“
+
+Bedienelemente
+
+6.2
+
+22/51
+
+Vorjahreswerte
+Der Zähler speichert jeweils am Jahresstichtag die Werte für
+• Energie (Zählerstand)
+• Volumen (Zählerstand)
+• Tarifregister (Zählerstand)
+• Fehlzeit (Zählerstand)
+• Durchflussmesszeit (Zählerstand)
+und jeweils die Maxima mit Datumsstempel für
+• Durchfluss
+• Leistung
+• Temperaturdifferenz
+• Temperatur warme Seite
+• Temperatur kalte Seite
+
+6.3
+
+Monatswerte
+Der Zähler speichert bis zu 60 Monate jeweils am Monatsstichtag die Werte
+für
+• Energie (Zählerstand)
+• Volumen (Zählerstand)
+• Tarifregister (Zählerstand)
+• Fehlzeit (Zählerstand)
+• Durchflussmesszeit (Zählerstand)
+und jeweils die Maxima mit Datumsstempel für
+• Durchfluss
+• Leistung
+• Temperaturdifferenz
+• Temperatur warme Seite
+• Temperatur kalte Seite
+Die Monatswerte sind auch über die optische und die 20 mA-Schnittstelle auslesbar.
+Hinweis: Als Standardzeit gilt die Mitteleuropäische Zeit (MEZ).
+Bei aktivierter Sommerzeit erfolgt die Speicherung zu den entsprechenden Zeiten.
+
+Auflösung der Anzeige
+
+7
+
+23/51
+
+Auflösung der Anzeige
+kWh
+
+1 kWh
+
+MWh *)
+
+0,001 MWh
+
+MJ
+
+1 MJ
+
+GJ *)
+
+0,001 GJ
+
+m³/h
+
+0,001 m³/h
+
+0,01 MWh
+
+0,01 GJ
+
+0,1 GJ
+0,01 m³/h
+
+m³
+
+0,01 m³
+
+0,6
+
+0,1 MWh
+
+2,5
+
+3,5
+
+0,1 m³
+
+10
+
+15
+
+25
+
+40
+
+60
+
+150
+
+Nenndurchfluss in m³/h
+*) Nachkommastelle "blinkend", "statisch" oder " unterdrückt"
+
+Hinweis: Die Zahl der Nachkommastellen eines Wertes richtet
+sich nach der gewählten Messstrecke und der gewählten Dimension.
+
+Spannungsversorgung
+
+8
+
+24/51
+
+Spannungsversorgung
+Der Zähler kann wahlweise mit Batterie oder über Spannungsmodule versorgt
+werden. Netzteile und Batterie sind jederzeit austauschbar.
+Varianten:
+•
+6 Jahresbatterie
+•
+
+11 Jahresbatterie
+
+•
+
+16 Jahresbatterie
+
+•
+
+Netzteil 110 / 230 V AC
+
+•
+
+Netzteil 24 V ACDC
+
+Automatische Netzerkennung
+Im Netzteil wird detektiert, ob Netzspannung anliegt. Dieses Signal wird dem
+Zähler zugeführt. Damit erkennt der Zähler automatisch, ob er von einer Batterie oder aus einem Netzteil versorgt wird.
+
+Anforderungen Spannungsversorgung
+Anforderungen
+(bei Messraster Q = 4 s und
+Messraster T = 30 s)
+
+6
+Jahre
+
+11
+Jahre
+
+16
+Jahre
+
+Netzteil (110 /
+240 V AC; 24
+V ACDC)
+
+Standardimpulse,
+M-Bus-Auslesung (max.
+alle 15 min.), BACnet /
+Modbus Modul
+
+2x AA
+
+C
+
+D
+
+ja
+
+Funk-Modul 868 MHz (Mobil
+16 Sek. Sendeintervall)
+
+D
+
+D
+
+--
+
+ja
+
+Funk-Modul 868 MHz (Stationär 15 Min. Sendeintervall)
+
+D
+
+D
+
+D
+
+ja
+
+D
+
+--
+
+--
+
+ja
+
+D
+
+--
+
+--
+
+ja
+
+--
+
+D*)
+
+D*)
+
+ja**)
+
+--
+
+--
+
+--
+
+ja
+
+D
+
+--
+
+--
+
+ja
+
+M-Bus-Schnellauslesung
+(max. alle 4 Sek.), Schnelle
+Impulse, Analog-Modul
+Schnelles Messraster (für
+Messraster Q =4 s und
+Messraster T = 4 s)
+Funk-Modul LoRa 868 MHz
+*) im EcoMode
+**) Einschränkung siehe Anleitung Modul
+
+Funk-Modul NB-IoT Band
+8, 20
+BACnet / Modbus Modul
+Ausleseintervall < 10 min.
+
+Hinweis: Die Batterielebensdauer ist abhängig vom Batterietyp
+und den Anforderungen.
+
+Spannungsversorgung
+
+25/51
+Hinweis: Es dürfen nur die vom Hersteller freigegebenen Batterien eingebaut werden.
+
+Spannungsmodule
+Allgemein
+Verschmutzungsgrad
+
+Umgebungsklasse
+Lagertemperatur
+Überbrückungszeit bei Spannungsausfall (Gangreserve)
+
+nach EN 61010 (keine oder nur trockene, nicht leitfähige Verschmutzung)
++ 5...+ 55°C
+-20 … 60 °C
+> 20 Minuten
+
+24°V°Sicherheitskleinspannung
+Spannung
+Frequenz
+Galvanische Trennung
+Leistungsaufnahme
+Klemme für Anschlussleitung
+
+12...36 V AC oder 12...42 V DC
+50 / 60 Hz oder DC
+1000 V DC
+maximal 0,8 VA
+2 x 1,5 mm² rund, Ø 5,0...6,0 mm
+
+100 - 240 V Wechselspannung *)
+Spannung
+Typ
+Frequenz
+Netzspannungsschwankungen
+Überspannungskategorie II nach
+EN60010
+Leistungsaufnahme
+Relative Feuchte
+Absicherung
+
+100…240 V AC (±10%)
+Schutzklasse II
+50 / 60 Hz
+max. 10% der Nennspannung
+2500 V Stoßspannung
+maximal 2,5 W
+5...90 % nicht kondensierend
+T < 55°C
+6 A Sicherungsautomat
+
+*) Hat 2 Ausgänge. Ein Ausgang versorgt den Zähler, der andere ein optional gestecktes GPRS oder NB-
+
+IOT Modul.
+
+Kommunikation
+
+9
+
+26/51
+
+Kommunikation
+
+Schnittstellen des Rechenwerkes
+Die Zähler sind serienmäßig mit einer optischen Schnittstelle nach EN 6205621:2002 ausgestattet.
+Sie können für die Fernablesung zusätzlich bis zu zwei der folgenden Kommunikationsmodule einsetzen:
+• Impuls-Modul
+• M-Bus-Modul G4
+• M-Bus-Modul G4 MI mit 2 Impulseingängen
+• Analog-Modul
+• Funk-Modul 868 MHz
+• GPRS-Modul
+• BACnet Modul
+• Modbus Modul
+• LoRaWAN-Modul
+• NB-IoT-Modul
+Diese Module verursachen keine Rückwirkung auf die Verbrauchserfassung.
+Sie können die Module jederzeit ohne Verletzung der Sicherungsmarke nachrüsten.
+Hinweis: Weitere Informationen erhalten Sie in den jeweiligen
+Modulanleitungen.
+
+Kommunikation
+
+27/51
+
+Zulässige Kombinationen von Modulen
+
+LoRa
+ja
+ja
+ja
+nein
+nein
+
+ja
+
+RF 868 MHz
+ja
+ja
+nein
+nein
+
+ja
+
+nein
+nein
+
+MB MI
+
+ja
+
+GPRS
+nein
+ja
+ja
+
+ja (4)
+ja
+
+nein
+
+ja
+
+nein
+nein
+
+ja
+
+ja
+
+ja
+
+MB G4
+
+*)
+
+„schnell“
+ja
+ja
+
+nein
+
+BACnet
+
+nein
+
+ja
+
+ja (1)
+
+„Standard“
+ja
+
+Modbus
+
+nein
+
+MB G4
+
+ja (2)
+
+ImpulsModul **)
+"Standard"
+
+ja
+
+AM
+
+nein
+
+Schritt 2
+Steckplatz für Modul #1 kann bestückt
+werden mit...
+
+BACnet
+Modbus
+NB-IoT
+GPRS
+
+ja
+
+LoRaWANModul
+BACnet Modul
+Modbus Modul
+NB-IoT-Modul
+GPRS-Modul
+
+AM (3)
+
+LoRA
+
+ja
+
+Funk Modul
+
+ja
+
+RF
+
+Schritt 1
+Steckplatz für Modul #2 ist bestückt
+mit...
+Impuls-Modul
+
+ja
+
+Analog-Modul
+M-Bus Modul
+M-Bus Modul
+
+ja
+
+AM
+MB G4
+MB MI
+
+Einschränkungen:
+*) nur 1 Modul mit schnellen Impulsen möglich;
+nur auf Steckplatz 2 zulässig;
+min. Impulsdauer:
+- 2 ms, wenn Impuls-Modul 1 nicht bestückt ist
+- 5 ms, wenn Impuls-Modul 1 bestückt ist
+**) Beim nachträglichen Stecken eines zweiten Impuls-Moduls auf Steckplatz 1
+kann sich die eingestellte Impulsdauer für Modul 2 ändern!
+(1) Impulslänge der schnellen Impulse min. 5 ms
+(2) Erster und zweiter Kanal sind jeweils individuell parametrierbar!
+(3) Bei Zählern mit Spannungsversorgung 110 / 230 V ist das Analogmodul
+auf Steckplatz 2 nicht möglich!
+(4) Abfrageintervall < 10 min erfordert D-Zelle (6 Jahre) oder Netzversorgung
+
+Anschlussklemmen
+Für den Anschluss der externen Leitungen auf den Modulen werden 2-polige
+bzw. 4-polige Klemmen verwendet.
+• Außendurchmesser der Leitung 4 … 6 mm
+• Anschlussvermögen
+▪ starr oder flexibel 0,2 … 2,5 mm²
+▪ flexibel mit Aderendhülse 0,25 … 1,5 mm²
+▪ Leitergrößen 26 … 14 AWG
+
+Kommunikation
+
+28/51
+•
+
+Mehrleiteranschluss (2 Leiter gleichen Querschnitts)
+▪ starr oder flexibel, 0,2 … 0,75 mm²
+▪ flexibel mit Aderendhülse ohne Kunststoffhülse, 0,25 … 0,34 mm²
+▪ flexibel mit TWIN-Aderendhülse mit Kunststoffhülse, 0,5 … 0,75 mm²
+Abisolierlänge 5 mm
+Empfohlener Schraubendreher:
+▪ 0,6 × 3,5 mm
+Anzugsmoment: 0,4 Nm
+
+•
+•
+•
+
+9.1
+
+Impuls-Modul
+Das Impuls-Modul ermöglicht die Ausgabe von Impulsen, die aus der Energie,
+dem Volumen, dem Tarifregister 1, Tarifregister 2 oder dem Fehlerstatus abgeleitet werden können. Es stehen zwei Kanäle zur Verfügung, deren Funktion mit der Service Software angepasst werden kann.
+Die Ausgabe erfolgt in Form von Standardimpulsen (feste Wertigkeit) oder als
+„schnelle Impulse“. Die Impulsdauer ist für Kanal 1 und Kanal 2 identisch.
+Beschriftung
+Anzeige in LCD
+Typ
+Spannung
+Strom
+Spannungsfestigkeit
+Klassifizierung
+Spannungsabfall
+Klassifizierung
+Spannungsabfall
+Ausgangsbeschaltung (WZU-P2):
+
+9.2
+
+pulse module
+CE, C2, CV, CT oder RI
+open collector
+maximal 30 V
+maximal 30 mA
+500 Veff gegen Masse
+OB (nach EN 1434-2)
+ca. 1,3 V bei 20 mA
+OC (nach EN 1434-2)
+ca. 0,3 V bei 0,1 mA
+
+M-Bus Modul G4
+Das M-Bus Modul dient der Kommunikation des Zählers mit einer M-Bus-Zentrale zur Übertragung der Messwerte.
+Norm
+Protokoll
+Galvanische Trennung
+vom Zähler
+von den Impulseingängen
+Anschluss
+Abisolierlänge
+Anschlussvermögen
+starr oder flexibel
+flexibel mit Aderendhülse
+Polarität
+Spannung
+Stromaufnahme
+Adressierung
+Baudrate
+Schnittstellenbeschreibung
+
+EN 1434-3; EN 13757 Teil 2, Teil 3
+EN 60870-5
+ja
+nein
+5 mm
+0,25...0,75 mm²
+0,25...0,75 mm²
+beliebig
+50 V DC maximal
+1 M-Bus-Last (1,5 mA)
+primär oder sekundär
+300, 1200, 2400, 4800 oder 9600
+Baud
+siehe TKB3448
+
+Kommunikation
+
+9.3
+
+29/51
+
+M-Bus Modul MI mit 2 Impulseingängen
+Das M-Bus Modul dient der Kommunikation des Zählers mit einer M-Bus-Zentrale zur Übertragung der Messwerte. Das Modul „MI“ ist zusätzlich zur möglichen Spannungsversorgung über den M-Bus-Anschluss mit einer Batterie
+ausgerüstet. Diese übernimmt die Versorgung für den Modulprozessor und die
+Impulseingänge, wenn keine M-Bus-Spannung anliegt.
+
+M-Bus
+Norm
+Protokoll
+galvanische Trennung
+vom Zähler
+von den Impulseingängen
+Anschluss
+Abisolierlänge
+Anschlussvermögen
+starr oder flexibel
+flexibel mit Aderendhülse
+Polarität
+Spannung
+Stromaufnahme
+Adressierung
+Baudrate
+Schnittstellenbeschreibung
+
+EN 1434-3; EN 13757-2, -3
+EN 60870-5
+ja
+nein
+5 mm
+0,25...0,75 mm²
+0,25...0,75 mm²
+beliebig
+50 V DC maximal
+1 M-Bus-Last (1,5 mA)
+primär oder sekundär
+300, 1200, 2400, 4800 oder 9600
+Baud
+siehe TKB3448
+
+Impuls
+Anzahl der Impulseingänge
+Lebensdauer der Modulbatterie
+
+Norm für Impulseingänge
+Frequenz
+Impulsdauer (Low)
+Impulspause (High)
+Impulswertigkeit
+
+Anzeige und Ausgabe
+
+Polarität
+galvanische Trennung
+Ausgangsspannung
+Innenwiderstand
+Quellenstrom
+Impulseingang geschlossen (Low)
+Impulseingang offen (High)
+
+Anschluss
+
+2 Impulseingänge je Modul „MI“
+5 Jahre Betrieb + 1 Jahr Lagerdauer;
+wenn am Modul während min. 90%
+der Betriebszeit die M-Bus-Spannung
+anliegt, erhöht sich die Batterielebensdauer auf 10 Jahre Betrieb
+Klasse IB nach EN 1434-2
+max. 10 Hz
+≥ 50 ms
+≥ 50 ms
+0,01 Ltr./Impuls bis 10.000,00 Ltr./Impuls,
+in Schritten von 0,01 Ltr./Impuls
+in m3, 7-stellig;
+je nach Parametrierung ohne oder mit
+1 Nachkommastelle
+muss beachtet werden, wenn Geber
+vom Typ „open collector“ ist
+vom Zähler: ja
+von den M-Bus-Eingängen: nein
+ca. 3,3 V
+ca. 1 MΩ
+ca. 3 µA
+Schaltschwelle Low < 0,2 V
+Widerstand < 50 kΩ
+Schaltschwelle High nicht durchgesteuerter Kollektor
+Widerstand ≥ 6 MΩ
+Abisolierlänge 5 mm
+
+Kommunikation
+
+30/51
+Anschlussvermögen
+starr oder flexibel
+flexibel mit Aderendhülse
+zulässige Leitungslänge
+
+9.4
+
+0,25...0,75 mm²
+0,25...0,75 mm²
+max. 10 m
+
+Analog-Modul
+Das Analog-Modul wandelt die Messgröße des Zählers in ein analoges Ausgangssignal um.
+Spannungsbereich
+Absicherung bei Betriebsspannung
+< 24V
+≥ 24V
+Max. Stromaufnahme
+Leitungsaufnahme
+Max. Last am Ausgang
+
+Genauigkeit
+Max. Länge der Leitungen
+Querschnitt der Leitungen
+
+9.5
+
+12…30 V AC
+200 mA, träge
+100 mA, träge
+170 mA @ 12 Volt
+max. 2 Watt
+300 Ohm für Stromausgang, 2kOhm
+für Spannungsausgang (Ausgänge
+sind kurzschlussfest)
+≤ ± 1% vom eingestellten Maximalwert
+100 m
+bis zu 1,5 mm²
+
+Funk-Modul 868 MHz (Wireless M-Bus)
+Hinweis: Für T550 mit Firmware ≥ 5.17.
+Ab T550 Firmware ≥ 5.23 stehen neue Funktionen (C1 Mode,
+OMS 4.1.2 mit Sicherheitsprofil B) zur Verfügung.
+Das Funk-Modul 868 MHz dient der drahtlosen Kommunikation des Zählers
+mit einer Zentrale mit einer Funkfrequenz von 868 MHz. Das Funk-Modul unterstützt die OMS konforme Datenübertragung im Funk Mode T1 oder C1 mit
+oder ohne Verschlüsselung (Details siehe Kapitel 16, 17). Eine Datenübertragung an einen OMS Funkkonzentrator (Smart Meter Gateway) oder das Landis+Gyr mobile Funkauslesesystem Q4 ist möglich.
+Sendefrequenz bei T1
+Sendefrequenz bei C1
+Sendeleistung (ERP)
+Reichweite*)
+Freifeld
+innerhalb Gebäuden
+Stromversorgung
+über Zähler **)
+
+Netzversorgung über Netzteil
+Erfüllte Norm
+
+868,95 MHz (min. 868,90 MHz bis
+max. 869,00 MHz)
+868,95 MHz (min. 868,928 MHz bis
+max. 868,972 MHz)
+min. 3,16 mW (5 dBm) bis
+max. 25 mW (13,9 dBm)
+bis zu maximal 400 m
+z. B. horizontal 30 m
+Batterie Typ D
+Funk mobil (16 Sekunden) 11 Jahre
+Lebensdauer
+Funk stationär (15 Minuten) 16 Jahre
+Lebensdauer
+110/230/24 V
+EN13757-2/ -4
+
+*) Kann je nach Gebäudestruktur deutlich abweichen.
+
+Kommunikation
+
+31/51
+**) Falls eine andere Batterie eingebaut ist, muss sie durch Typ D ersetzt werden. Diese
+Lebensdauer gilt für die Standard Datentelegramme (P600, P601) sowie T550 mit Standard Messintervall für Durchfluss und Temperatur.
+
+9.6
+
+Funk-Modul 868 MHz LoRaWAN (WZU-LoRa; WZU-LoRa-EXT)
+Hinweis: Für T550 mit Firmware ≥ 5.15.
+
+Hinweis: Das Modul wird als „MB G4“ am Display angezeigt.
+Das LoRaWAN Modul sendet Zählerdaten über ein LoRaWAN-Funk Netzwerk
+an einen Applikations Server (Zentrale), auf die auch der Endkunde Zugriff
+hat. Die Zählerdaten werden unmittelbar nach dem Start gesendet. Mit der
+mobilen „Elvaco OTC APP“ der Fa. Elvaco kann das Modul parametriert werden.
+Sendefrequenz
+Sendeleistung (ERP)
+Reichweite*)
+Freifeld
+innerhalb Gebäuden
+Stromversorgung
+über Zähler **)
+
+Netzversorgung über Netzteil
+Erfüllte Norm
+
+868 MHz
+25 mW (14 dBm)
+10 km
+100 m
+Batterie Typ D
+Sendeintervall 60 Minuten 11 Jahre
+Sendeintervall 160 Minuten 16 Jahre
+Lebensdauer
+110/230/24 V (nicht mit Elvaco 24V)
+LoRaWAN Version 1.0 (Class A bi-di-
+
+rectional)
+*) Kann je nach Gebäudestruktur deutlich abweichen.
+**) Falls eine andere Batterie eingebaut ist, muss sie durch Typ D ersetzt werden. Diese Le-
+
+bensdauer gilt für die Standard Datentelegramme (z. B. P600) sowie T550 mit Standard
+Messintervall für Durchfluss und Temperatur.
+
+9.7
+
+Funk-Modul NB-IoT (WZU-NB-IoT-EXT)
+Hinweis: Für T550 mit Firmware ≥ 5.15.
+
+Hinweis: Das Modul wird als „MB G4“ am Display angezeigt.
+Das NB-IoT Modul sendet Zählerdaten über ein NB-IoT-Mobilfunk Netzwerk
+an einen Applikations Server (Zentrale), auf den auch der Endkunde Zugriff
+hat. Die Zählerdaten werden unmittelbar nach dem Start gesendet. Mit der
+mobilen „Elvaco OTC APP“ der Fa. Elvaco kann das Modul parametriert werden.
+Band (Sendefrequenz)
+SIM Kartenformat
+Sendeleistung (ERP)
+Antenne
+Reichweite*)
+
+8 (900MHz), 20 (800MHz)
+„FF“ (Mini-SIM)
+max. 200 mW (23 dBm)
+für externe Antennen
+
+Kommunikation
+
+32/51
+Freifeld
+innerhalb Gebäuden
+Sendeintervall
+Stromversorgung
+Netzversorgung über Netzteil
+
+10 km
+100 m
+Max. alle 5 Minuten
+
+WZU-ACDC24-50 (mit 2 Ausgängen);
+WZU-AC110/230-xx (mit 2 Ausgängen)
+Erfüllte Norm
+3GPP Release 13 (NB1)
+*) Kann je nach Gebäudestruktur deutlich abweichen.
+
+9.8
+
+GPRS-Modul
+Das GPRS-Modul dient zur Datenerfassung über das Mobilfunknetz* mittels
+offener Standardprotokolle** im Push Betrieb (als Email, HTTP, FTP, SMS)
+oder im Pull-Betrieb als transparenter M-Bus (GSM, TCP). Die Einbindung in
+Verrechnungssysteme erfolgt über wählbare Berichtsvorlagen.
+Die Konfiguration erfolgt über SMS. Ein Firmware-Update ist zur belieben Zeit
+möglich („Over The Air“).
+Das Modul besitzt einen integrierten M-Bus Master, mit dem bis zu 8 weitere
+M-Bus Zähler (sog. Slaves) ausgelesen werden können. Die Zählerdaten können in wählbaren Intervallen gespeichert und versendet werden. Zusätzlich
+sind „Ad-hoc“ Auslesungen möglich.
+Anschluss M-Bus
+Stromversorgung
+Nennspannung
+Frequenz
+Leistung (max.)
+Leistung (Nennverbrauch)
+Installation/Überspannung
+GPRS-Klasse
+Band
+Betriebstemperaturbereich
+Lagertemperaturbereich
+Max. Luftfeuchtigkeit im Betrieb
+Verschmutzung
+Betriebshöhe
+Betrieb nur innerhalb vom Gebäude
+LED-Anzeigen
+M-Bus-Standard
+M-Bus-Baudrate
+Transparenter M-Bus
+Maximale Zahl angeschlossener MBus-Slaves
+Maximale Kabellänge
+Sicherung Echtzeituhr
+Genauigkeit Echtzeituhr
+Datenspeicher (Datenlogger
+Funktion)
+
+Push-pull Terminal 0,20 – 0,75 mm²
+Über Netzteil Zähler
+100-240 V AC (+/- 10 %)
+50/60 Hz
+<6W
+<1W
+CAT 2
+12
+850/9000/1800/1900 MHz
+-20 bis +55° C
+-40 bis +85° C
+5 – 90 % RH, nicht kondensierend
+Grad 2
+0-2000 m
+Ja
+Grün, Gelb, Rot, Blau
+EN 13757, M-Bus Voll-Decoder
+2400 und 9600 Bit / s
+TCP-IP und GSM
+8
+1000 m (100 nF / km, max. 90 Ω)
+12 h
+< 2 s / Tag
+1,3 MByte
+
+*
+
+) SIM Karte benötigt
+**) Kommunikationsprotokolle
+• E-Mail über SMTP mit Authentifikationsmodus HELO, EHLO
+• Passiver FTP-Modus mit Authentifikation und Änderung des Remote-Verzeichnisses
+• HTTP POST und GET
+
+Kommunikation
+
+33/51
+• GSM-Daten Transparenter M-Bus @ 2400 und 9600 Baud und GSM-Datenkonsole
+• TCP Transparenter M-Bus @ 2400 und 9600 Baud und TCP-Konsole
+• SMS für Konfiguration
+• Internetzeitsynchronisierung mit NTP oder Daytime-Protokoll
+
+9.9
+
+BACnet Modul (WZU-485E-BAC)
+Das BACnet Kommunikationsmodul WZU-485E-BAC ist ein Zusatzmodul für
+die Zähler vom Typ T550 (UH50…) (Firmware ab 5.15) und T550 (UC50…).
+Das Modul ist für die Datenübertragung nach dem BACnet MS/TP (RS485)
+Protokoll geeignet und vorkonfiguriert.
+
+Generelle Informationen
+Kommunikationsprotokoll
+Unterstützte BACnet Services
+
+BACnet Adressbereich
+Übertragungsgeschwindigkeit
+Kommunikationsadresse
+Datenaktualisierung
+
+BACnet MS/TP (RS485) nach ASHRAE 135 und ISO 16484-5
+BACnet Application Specific Controller (B-ASC)
+BACnet Master Mode
+1 – 127
+9600 / 19200 / 38400 / 76800 bps
+M-Bus Primäradresse des T550
+(Loop 4:
+)
+Stand-by: 60 min
+In Betrieb: nach jeder Anfrage, max.
+alle 10s
+
+Werkseinstellungen
+Übertragungsgeschwindigkeit
+Kommunikationsadresse (T550)
+
+38400 bps
+0 (Default des Zählers – muss geändert werden)
+
+RS485 Informationen
+HW Netzwerkanschluss
+
+RS485 Abschlusswiderstand
+
+RS485: A+, B-, GND
+Die Anschlüsse der Datenleitung (A,
+B) sind gegen kurzzeitige Überlast
+geschützt.
+Externen Widerstand (120 Ohm) benutzen
+
+Spannungsversorgung
+Wechselspannung
+Gleichspannung
+Leistungsaufnahme
+Empfohlene Absicherung
+Galvanische Trennung
+Vom Zähler
+Vom RS485 Netzwerk
+
+Zulässiger Bereich: AC 16...28 V
+Zulässiger Bereich: DC 10...32 V
+<50mA (typisch <20 mA bei 24 V)
+100 mA träge
+Ja
+Nein
+
+Kommunikation
+
+9.10
+
+34/51
+
+Modbus Modul (WZU-485E-MOD)
+Das Modbus Kommunikationsmodul WZU-485E-MOD ist ein Zusatzmodul für
+die Zähler vom Typ T550 (UH50…) (Firmware ab 5.15) und T550 (UC50…).
+Das Modul ist für die Datenübertragung nach dem Modbus-RTU Protokoll
+über RS485 geeignet und vorkonfiguriert.
+
+Generelle Informationen
+Kommunikationsprotokoll
+Modbus Adressbereich
+Übertragungsgeschwindigkeit
+Kommunikationsadresse
+Datenaktualisierung
+
+Parität
+Anzahl Stop-Bits
+
+Modbus RTU
+1 – 247
+2400 / 4800 / 9600 / 19200 bps
+M-Bus Primäradresse des T550
+(Loop 4:
+)
+Stand-by: 60 min
+In Betrieb: nach jeder Anfrage, max.
+alle 10s
+even / odd / none
+1
+
+Werkseinstellungen
+Übertragungsgeschwindigkeit
+Modbus Parität
+Kommunikationsadresse
+
+9600 bps
+Gerade (even)
+0 (Default des Zählers; muss geändert werden)
+
+RS485 Informationen
+HW Netzwerkanschluss
+
+RS485 Abschlusswiderstand
+
+RS485: A+, B-, GND
+Die Anschlüsse der Datenleitung (A,
+B) sind gegen kurzzeitige Überlast
+geschützt.
+Externen Widerstand (120 Ohm) benutzen
+
+Spannungsversorgung
+Wechselspannung
+Gleichspannung
+Leistungsaufnahme
+Empfohlene Absicherung
+Galvanische Trennung
+Vom Zähler
+Vom RS485 Netzwerk
+
+Zulässiger Bereich: AC 16...28 V
+Zulässiger Bereich: DC 10...32 V
+<50mA (typisch <20 mA bei 24 V)
+100 mA träge
+Ja
+Nein
+
+Tarifsteuerung (optional)
+
+10
+
+35/51
+
+Tarifsteuerung (optional)
+Hinweis: Die Tarifparametrierung kann nur mit der Service Software durchgeführt werden.
+Hinweis: Die Aufsummierung von Energie und Volumen in den
+Standardregistern erfolgt unabhängig von der Tarifsituation.
+Für die Tarifsteuerung stehen folgenden Möglichkeiten zur Verfügung:
+
+Schwellwerttarif (Tarife T2, T3, T4, T5, T6)
+Die Schwellwerte können aus
+• dem Durchfluss (Tarif T2),
+• der Leistung (Tarif T3),
+• der Temperatur kalte Seite (Tarif T4),
+• der Temperatur warme Seite (Tarif T5) oder
+• der Temperaturdifferenz (Tarif T6)
+abgeleitet werden.
+Gesamt-Wärmemenge und das Gesamt-Volumen werden immer aufsummiert.
+Wärmemenge oder Wärmevolumen kann aber auch schwellwertabhängig in
+bis zu 3 Tarifregistern erfasst werden.
+Jedes Tarifregister wird über eine Tarifschwelle gesteuert.
+kumulierter Messwert:
+W oder V
+Standardregister:
+
+W
+
+Wärmemenge
+
+V
+
+Volumen
+
+Schwelle 1
+
+Tarifregister:
+
+Eine Aufsummierung erfolgt, wenn:
+
+TR1
+
+Schwelle 1 < Messwert < Schwelle 2
+
+TR2
+
+Schwelle 2 < Messwert < Schwelle 3
+
+TR3
+
+Schwelle 3 < Messwert
+
+Schwelle 2
+
+Schwelle 3
+
+Tarifsituation "T2", "T3", "T4", "T5", "T6"
+Messgröße für Schwellwerte:
+Q / P / TV / TR / TDiff
+
+Im jeweiligen Tarifregister erfolgt die Aufsummierung nur dann, wenn die betreffende Schwelle überschritten wurde.
+•
+•
+•
+
+Schwelle 1 überschritten: Aufsummierung im Tarifregister 1
+Schwellen 1 und 2 überschritten: Aufsummierung im Tarifregister 2
+Schwellen 1, 2 und 3 überschritten: Aufsummierung im Tarifregister 3
+
+Angelieferte Energie / Adjusted Energy (Tarif T7)
+Im Tarifregister 1 wird die Energie aufsummiert, die aus der Temperatur
+warme Seite berechnet wird (anstatt aus der Temperaturdifferenz). Die Funktion Adjusted Energy (ab FW 5.24) berechnet die Energie aus der Referenztemperatur, der Temperatur der warmen Seite und summiert diese in Tarifregister 1.
+
+Rückgelieferte Energie (Tarif T8)
+Im Tarifregister 1 wird die Energie aufsummiert, die aus der Temperatur kalte
+Seite berechnet wird (anstatt aus der Temperaturdifferenz).
+
+Tarifsteuerung (optional)
+
+36/51
+
+Wärme-/Kältezähler (Tarif T9)
+Im Tarifregister 1 wird die gemessene Kältemenge, in Tarifregister 2 die gemessene Wärmemenge aufsummiert. In beiden Fällen kann jeweils über die
+Temperatur warme Seite eine Schwelle („Kälteschwelle“, „Wärmeschwelle“)
+definiert werden.
+• „Wärmeschwelle“ überschritten und Temperaturdifferenz > +0,2 K →
+Wärmemenge wird erfasst
+• „Kälteschwelle“ unterschritten und Temperaturdifferenz < -0,2 K →
+Kältemenge wird erfasst
+
+Tarifsteuerung über Zeitschaltuhr (Tarif T10)
+Für die Tarifsteuerung kann je ein Aus- und ein Einschaltpunkt pro Tag definiert werden. Zum jeweiligen Einschaltzeitpunkt wird die Aufsummierung von
+Energie oder Volumen im Tarifregister 1 gestartet, zum Ausschaltzeitpunkt
+entsprechend beendet.
+
+Tarifsteuerung über M-Bus (Tarif T11)
+In den Tarifregistern 1, 2 und 3 kann entweder die Energie oder das Volumen
+aufsummiert werden. Über einen entsprechenden M-Bus-Befehl kann einer
+der 3 Tarife aktiviert oder alle Tarife deaktiviert werden.
+
+Aufpreismengentarif mittels Rücklauftemperatur (Tarif T12)
+Die Energie wird abhängig von der Temperatur kalte Seite in den Tarifregistern 1 oder 2 aufsummiert.
+Die aufsummierte Energie wird aus der Differenz der Temperatur kalte Seite
+zu einer definierten Rücklauftemperaturschwelle berechnet (anstatt aus der
+Temperaturdifferenz).
+• Rücklaufschwelle überschritten: T1 wird aufsummiert
+• Rücklaufschwelle unterschritten: T2 wird aufsummiert
+
+Anzeige der Tarifsituation auf der LCD
+Der aktuelle Tarifstatus wird zusammen mit der Energie bzw. dem Volumen in
+der Nutzerschleife „LOOP 0“ dargestellt.
+Für Tarif T7 und T8 wird kein Tarifstatus angezeigt.
+Für Tarife T2, T3, T4, T5, T6, T10, T11 und T12
+kein Tarifregister aktiv
+Tarifregister 1 aktiv
+Tarifregister 2 aktiv
+Tarifregister 3 aktiv
+Für Tarif T9 (Wärme-/Kältezähler)
+kein Tarifregister aktiv
+Tarifregister 1 aktiv
+Tarifregister 2 aktiv
+Die Tarifart und die zugehörigen Parameter werden in der Serviceschleife
+LOOP 4 angezeigt.
+
+Tarifsteuerung (optional)
+
+37/51
+bei T2, T3, T4, T5, T6
+im 2s- Wechsel mit Schwellwert 1/2/3
+bei T7
+bei T8
+bei T9;
+im 2s-Wechsel
+
+bei T10;
+Schaltzeiten im 2s-Wechsel
+
+bei T11
+bei T12
+Die Inhalte der Tarifregister werden in der Nutzerschleife nach der Energie angezeigt.
+Für Tarife T2, T3, T4, T5, T6, T10, T11 und T12
+Tarifregister 1
+Tarifregister 2
+Tarifregister 3 (nicht bei T12)
+bei Tarif T7
+bei Tarif T8
+bei Tarif T9
+
+Fehlermeldungen
+
+11
+
+38/51
+
+Fehlermeldungen
+Der Zähler führt regelmäßig eine Selbstdiagnose durch und kann so verschiedene Fehlermeldungen erkennen und anzeigen.
+FehlerFehler
+Maßnahmen
+code
+FL
+neG
+
+Falsche Durchflussrichtung
+
+Fluss- bzw. Einbaurichtung prüfen,
+ggf. korrigieren
+
+ggf. im Wechsel mit:
+DIFF
+nEG
+
+Negative Temperaturdifferenz
+
+Einbauort der Temperaturfühler
+prüfen; ggf. austauschen
+
+ggf. im Wechsel mit:
+F0
+
+Kein Durchfluss messbar
+
+Luft im Messteil / Leitung; Leitung
+entlüften (Anlieferungszustand)
+
+F1
+
+Unterbrechung Temperaturfühler warme Seite
+
+Temperaturfühler warme Seite prüfen, ggf. austauschen
+
+F2
+
+Unterbrechung Temperaturfühlers kalte Seite
+
+Temperaturfühler kalte Seite prüfen, ggf. austauschen
+
+F3
+
+Elektronik für Temperaturauswertung defekt
+
+Gerät austauschen
+
+F4
+
+Batterie leer; Problem bei
+der Spannungsversorgung
+
+Batterie tauschen; Anschluss prüfen
+
+F5
+
+Kurzschluss Temperaturfühler warme Seite
+
+Temperaturfühler warme Seite prüfen, ggf. austauschen
+
+F6
+
+Kurzschluss Temperaturfühler kalte Seite
+
+Temperaturfühler kalte Seite prüfen, ggf. austauschen
+
+F7
+
+Störung im internen Speicher
+
+Gerät austauschen
+
+F8
+
+F1, F2, F3, F5 oder F6
+stehen länger als 8 Std.
+an,
+Erkennung von Manipulationsversuchen.
+Es werden keine Messungen mehr durchgeführt.
+
+Maßnahmen je nach Fehlercode
+abhängig. Diese F8 Fehlermeldung
+muss vom Service rückgesetzt
+werden.
+
+F9
+
+Fehler in der Elektronik
+
+Gerät austauschen
+
+Fehlermeldungen
+
+39/51
+Hinweis: Setzen Sie die Meldung F8 im Parametriermodus manuell oder mit der Service Software zurück. Alle anderen Fehlermeldungen werden nach Fehlerbeseitigung automatisch gelöscht.
+
+Log-Funktionen
+
+12
+
+40/51
+
+Log-Funktionen
+Im internen Logbuch werden messtechnisch relevante Ereignisse (Fehler, Zustände, Aktionen) mit dem Zeitpunkt ihres Auftretens in chronologischer Reihenfolge abgelegt. Die erfassten Ereignisse sind vordefiniert. Die Daten des
+Logbuchs können nicht gelöscht werden.
+Jedes Ereignis wird in einem eigenen 4-stufigen Schieberegister gespeichert;
+die Überläufe werden in einen 25-stufigen Ringspeicher übertragen. Somit
+sind für jedes Ereignis mindestens die letzten 4 Zeitpunkte nachvollziehbar.
+In einem Monatsregister sind die Fehlerzustände für den aktuellen Monat sowie für die vergangenen 18 Monate (ohne Zeitstempel) abgespeichert.
+lfd.
+Nr.
+
+Beschreibung
+
+1
+
+F0 = Luft im Messrohr
+
+2
+
+F1 = Unterbrechung Temperaturfühler warme Seite
+
+3
+
+F2 = Unterbrechung Temperaturfühler kalte Seite
+
+4
+
+F3 = Fehler Temperaturelektronik
+
+5
+
+F5 = Kurzschluss Temperaturfühler warme Seite
+
+6
+
+F6 = Kurzschluss Temperaturfühler kalte Seite
+
+7
+
+F8 = Temperaturfühlerfehler > 8 Stunden
+
+8
+
+F9 = ASIC-Fehler
+
+9
+
+max. Temperatur im Volumenmessteil wurde überschritten
+
+10
+
+min. Temperatur im Volumenmessteil wurde unterschritten
+
+11
+
+max. Durchfluss qs wurde überschritten
+
+12
+
+Verschmutzungsvorwarnung
+
+13
+
+Netzspannung aus
+
+14
+
+CRC-Fehler ist aufgetreten
+
+15
+
+Abgleichwerte wurden parametriert
+
+16
+
+F7-(EEPROM)-Vorwarnung
+
+17
+
+Reset ist erfolgt
+
+18
+
+Datum / Uhrzeit wurde parametriert
+
+19
+
+Jahresstichtag wurde parametriert
+
+Log-Funktionen
+
+41/51
+20
+
+Monatsstichtag wurde parametriert
+
+21
+
+Master-Reset wurde durchgeführt
+
+22
+
+alle Zeiten wurden gelöscht
+
+23
+
+Fehlzeit wurde gelöscht
+
+24
+
+Maxima wurde gelöscht
+Hinweis: Das Auslesen erfolgt über die optische Schnittstelle
+mit der Service Software.
+
+Datenlogger (optional)
+
+13
+
+42/51
+
+Datenlogger (optional)
+Der Datenlogger ermöglicht die Archivierung von Daten, die individuell aus einem vordefinierten Wertevorrat ausgewählt werden. Der Datenlogger enthält
+vier Archive, denen 8 Kanäle zugewiesen sein können. Die Daten können den
+Kanälen beliebig zugewiesen werden.
+Archiv
+
+Zeitbasis
+
+Speichertiefe
+
+Mittelungszeit für
+Maximum*)
+
+Stundenarchiv
+
+1 Stunde
+
+45 Tage
+
+1 Stunde
+
+Tagesarchiv
+
+1 Tag
+
+65 Tage
+
+1 Stunde
+
+Monatsarchiv
+
+1 Monat
+
+15 Monate
+
+1 Stunde
+
+Jahresarchiv
+
+1 Jahr
+
+15 Jahre
+
+1 Stunde /
+24 Stunden
+
+*) Bei einer kürzeren Messperiode als 1 Stunde gilt der größte Wert aus den
+ermittelten Maximumwerten innerhalb einer Stunde.
+Hinweis: Die Parametrierung und das Auslesen erfolgt über die
+optische Schnittstelle mit der Service Software.
+Hinweis: Die Datenübertragung erfolgt in einem herstellerspezifischen Format.
+Wertevorrat
+
+Zählerstände am Ende
+der Periode für...
+
+Energie
+Tarifregister 1, 2, 3
+Volumen
+Betriebsdauer *)
+Störungsdauer *)
+Impulseingang 1
+Impulseingang 2
+
+Momentanwerte am
+Ende der Periode für...
+
+Leistung
+Durchfluss
+Temperatur warme Seite
+Temperatur kalte Seite
+Temperaturdifferenz
+Fehleranzeige
+
+Maximum für...
+
+Leistung
+Durchfluss
+Temperatur warme Seite
+Temperatur kalte Seite
+Temperaturdifferenz
+
+*) je nach Parametrierung: Stunden oder Tage
+
+Zusätzliche Optionen
+
+14
+
+43/51
+
+Zusätzliche Optionen
+Variante:
+•
+
+Ausführung mit Datenlogger
+
+•
+
+Wärmezähler mit Einbauort warme Seite
+
+•
+
+Einsatz als Durchflusszähler
+
+•
+
+Kältezähler 6/12 °C
+
+•
+
+Kombinierter Wärme-/Kältezähler
+
+•
+
+Steuerleitung zwischen Messrohr und Rechenwerk bis 5 m
+
+•
+
+Temperaturfühleranschluss in Vierleitertechnik
+
+Bestellbezeichnungen (Typenschlüssel)
+
+15
+
+44/51
+
+Bestellbezeichnungen (Typenschlüssel)
+
+Bestellbezeichnungen für Zifferblattangaben
+1. Zählerart und Einbauort
+Code
+Wärmezähler in Zweileitertechnik für Einbau kalte
+Seite
+Wärmezähler in Zweileitertechnik für Einbau warme
+Seite
+Kombinierter Wärme-/Kältezähler in Zweileitertechnik
+für Einbau kalte Seite (nur in Verbindung mit Fühler
+Pt500)
+Durchflusssensor
+Kältezähler in Zweileitertechnik für Einbau warme
+Seite (nur in Verbindung mit Fühler Pt500)
+Kältezähler in Zweileitertechnik für Einbau kalte Seite
+Wärmezähler in Vierleitertechnik für Einbau kalte
+Seite
+Wärmezähler in Vierleitertechnik für Einbau warme
+Seite
+Kombinierter Wärme-/Kältezähler in Vierleitertechnik
+für Einbau kalte Seite (nur in Verbindung mit Fühler
+Pt500)
+Kältezähler in Vierleitertechnik für Einbau warme
+Seite (nur in Verbindung mit Fühler Pt500)
+Kältezähler in Vierleitertechnik für Einbau kalte Seite
+
+2. Nenndurchfluss
+Nenndurchfluss 0,6 m³/h, Baulänge 130 mm, Nenndruck PN16, Anschluss G 1 B
+Nenndurchfluss 0,6 m³/h, Baulänge 130 mm, Nenndruck PN25, Anschluss G 1 B
+Nenndurchfluss 0,6 m³/h, Baulänge 110 mm, Nenndruck PN16, Anschluss G ¾ B
+Nenndurchfluss 0,6 m³/h, Baulänge 110 mm, Nenndruck PN25, Anschluss G ¾ B
+Nenndurchfluss 0,6 m³/h, Baulänge 190 mm, Nenndruck PN16, Anschluss G 1 B
+Nenndurchfluss 0,6 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss Flansch DN 20
+Nenndurchfluss 0,6 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss G 1 B
+Nenndurchfluss 1,5 m³/h, Baulänge 110 mm, Nenndruck PN16, Anschluss G ¾ B
+
+A
+B
+C
+D
+G
+H
+L
+M
+N
+T
+U
+
+Code
+03
+04
+05
+06
+07
+08
+09
+21
+
+Nenndurchfluss 1,5 m³/h, Baulänge 110 mm, Nenndruck PN25, Anschluss G ¾ B
+Nenndurchfluss 1,5 m³/h, Baulänge 190 mm, Nenndruck PN16, Anschluss G 1 B
+Nenndurchfluss 1,5 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss Flansch DN 20
+Nenndurchfluss 1,5 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss G 1 B
+Nenndurchfluss 1,5 m³/h, Baulänge 130 mm, Nenndruck PN16, Anschluss G 1
+Nenndurchfluss 1,5 m³/h, Baulänge 130 mm, Nenndruck PN25, Anschluss G 1
+Nenndurchfluss 2,5 m³/h, Baulänge 130 mm, Nenndruck PN16, Anschluss G 1 B
+Nenndurchfluss 2,5 m³/h, Baulänge 130 mm, Nenndruck PN25, Anschluss G 1 B
+Nenndurchfluss 2,5 m³/h, Baulänge 190 mm, Nenndruck PN16, Anschluss G 1 B
+Nenndurchfluss 2,5 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss Flansch DN 20
+Nenndurchfluss 2,5 m³/h, Baulänge 190 mm, Nenndruck PN25, Anschluss G 1 B
+Nenndurchfluss 3,5 m³/h, Baulänge 260 mm, Nenndruck PN16, Anschluss G 1 ¼ B
+Nenndurchfluss 3,5 m³/h, Baulänge 260 mm, Nenndruck PN25, Anschluss Flansch DN 25
+Nenndurchfluss 3,5 m³/h, Baulänge 260 mm, Nenndruck PN25, Anschluss G 1 ¼ B
+Nenndurchfluss 6,0 m³/h, Baulänge 260 mm, Nenndruck PN16, Anschluss G 1 ¼ B
+Nenndurchfluss 6,0 m³/h, Baulänge 260 mm, Nenndruck PN25, Anschluss Flansch DN 25
+Nenndurchfluss 6,0 m³/h, Baulänge 150 mm, Nenndruck PN16, Anschluss G 1 ¼ B
+Nenndurchfluss 10 m³/h, Baulänge 300 mm, Nenndruck PN16, Anschluss G 2 B
+Nenndurchfluss 10 m³/h, Baulänge 300 mm, Nenndruck PN25, Anschluss Flansch DN 40
+Nenndurchfluss 10 m³/h, Baulänge 200 mm, Nenndruck PN16, Anschluss G 2 B
+Nenndurchfluss 15 m³/h, Baulänge 270 mm, Nenndruck PN25, Anschluss Flansch DN 50
+
+22
+23
+24
+25
+26
+27
+36
+37
+38
+39
+40
+45
+46
+47
+50
+52
+55
+60
+61
+63
+65
+
+45/51
+Nenndurchfluss 15 m³/h, Baulänge 200 mm, Nenndruck PN25, Anschluss Flansch DN 50
+Nenndurchfluss 25 m³/h, Baulänge 300 mm, Nenndruck PN25, Anschluss Flansch DN 65
+Nenndurchfluss 40 m³/h, Baulänge 300 mm, Nenndruck PN25, Anschluss Flansch DN 80
+Nenndurchfluss 60 m³/h, Baulänge 360 mm, Nenndruck PN16, Anschluss Flansch DN 100
+Nenndurchfluss 60 m³/h, Baulänge 360 mm, Nenndruck PN25, Anschluss Flansch DN 100
+Nenndurchfluss 150 m³/h, Baulänge 500 mm, Nenndruck PN16, Anschluss DN 150
+Nenndurchfluss 150 m³/h, Baulänge 500 mm, Nenndruck PN25, Anschluss DN 150
+Nenndurchfluss 150 m³/h, Baulänge 500 mm
+(Einsatz), Nenndruck PN16, Anschluss DN 150
+Nenndurchfluss 150 m³/h, Baulänge 500 mm
+(Einsatz), Nenndruck PN25, Anschluss DN 150
+
+3. Steuerleitung / Bauart / Rechenwerk
+
+69
+
+5. Herstellerlabel
+Firmenmarke Landis+Gyr
+
+70
+74
+82
+83
+A1
+A2
+A3
+A4
+
+Code
+
+Splitausführung mit 1,5 m Steuerleitung
+
+C
+
+Splitausführung mit 3,0 m Steuerleitung
+
+D
+
+Splitausführung mit 5,0 m Steuerleitung
+
+E
+
+andere Labels auf Anfrage
+
+6. Typ und Anschlussart Fühler
+
+0
+A
+
+Fühler Pt100, lösbar, im Messrohr eingebaut
+
+B
+
+Fühler Pt100, lösbar, Einbau im Messrohr optional
+
+C
+
+Fühler Pt500, lösbar, nicht im Messrohr eingebaut
+
+E
+
+Fühler Pt500, lösbar, im Messrohr eingebaut
+
+F
+
+Fühler Pt500, lösbar, Einbau im Messrohr optional
+
+G
+
+Fühler Pt500, nicht lösbar, nicht im Messrohr eingebaut
+Fühler Pt500, nicht lösbar, im Messrohr eingebaut
+Fühler Pt500, nicht lösbar, Einbau im Messrohr optional
+
+Hardwareabhängige Merkmale
+7. Fühlerbauform
+
+Code
+
+Zifferblatt für Mittleren Osten (englisch)
+Zifferblatt für Österreich (deutsch)
+Zifferblatt für Australien (englisch)
+Zifferblatt für Bosnien-Herzegowina (kroatisch)
+Zifferblatt für Belgien (französisch/flämisch)
+Zifferblatt für Bulgarien (bulgarisch)
+Zifferblatt für Weißrussland (russisch)
+Zifferblatt für die Schweiz (deutsch/französisch)
+Zifferblatt für China (chinesisch)
+Zifferblatt für die Tschechische Republik (tschechisch)
+Zifferblatt für Deutschland (deutsch)
+Zifferblatt für Dänemark (dänisch)
+Zifferblatt für Estland (estnisch)
+Zifferblatt englisch neutral
+Zifferblatt für Spanien (spanisch)
+Zifferblatt für Finnland (finnisch)
+Zifferblatt für Frankreich (französisch)
+Zifferblatt für Großbritannien (englisch)
+Zifferblatt für Griechenland (englisch)
+Zifferblatt für Kroatien (kroatisch)
+Zifferblatt für Ungarn (ungarisch)
+Zifferblatt für Island (isländisch)
+Zifferblatt für Italien (italienisch)
+Zifferblatt für Japan (japanisch)
+Zifferblatt für Luxemburg (deutsch/französisch)
+Zifferblatt für Moldawien (rumänisch)
+Zifferblatt für Montenegro (serbisch)
+Zifferblatt für Mazedonien (mazedonisch)
+Zifferblatt für Mongolei (mongolisch)
+Zifferblatt für Niederlande (niederländisch)
+Zifferblatt für Norwegen (norwegisch)
+Zifferblatt für Polen (polnisch)
+Zifferblatt für Rumänien (rumänisch)
+Zifferblatt für Serbien (serbisch)
+Zifferblatt für Russland (russisch)
+Zifferblatt für Schweden (schwedisch)
+Zifferblatt für die Slowakische Republik (slowakisch)
+Zifferblatt für Südtirol (deutsch)
+Zifferblatt für die Ukraine (ukrainisch)
+
+AE
+AT
+AU
+BA
+BE
+BG
+BY
+CH
+CN
+CZ
+
+8. Spannungsversorgung
+
+Q
+R
+
+DE
+DK
+EE
+EN
+ES
+FI
+FR
+GB
+GR
+HR
+HU
+IS
+IT
+JP
+LU
+MD
+ME
+MK
+MN
+NL
+NO
+PL
+RO
+RS
+RU
+SE
+SK
+I2
+UA
+
+xx
+
+Code
+
+Fühler Pt100, lösbar, nicht im Messrohr eingebaut
+
+4. Land / Einsatzland
+
+P
+
+00
+
+Durchflusssensor (ohne Fühler)
+
+ohne Fühler
+Typ DS, 25 bar/150 °C/ M10x1 / Eintauchlänge 27,5
+mm, Kabellänge 1,5 m
+Typ DS, 25 bar/150 °C/ M10x1 / Eintauchlänge 27,5
+mm, Kabellänge 2,5 m
+Typ DS, 25 bar/150 °C/ M10x1 / Eintauchlänge 38
+mm, Kabellänge 1,5 m (nur Pt500)
+Typ DS, 25 bar/150 °C/ M10x1 / Eintauchlänge
+38mm, Kabellänge 2,5 m (nur Pt500)
+Typ PS, 16 bar/150 °C/ Ø5,2x45 mm, Kabellänge 1,5
+m
+Typ PS, 16 bar/150°C/ Ø5,2x45 mm, Kabellänge 5 m
+Typ PL, 25 bar/180 °C/ Ø6x100 mm, Kabellänge 2 m
+Typ PL, 25 bar/180 °C/ Ø6x100 mm, Kabellänge 5 m
+(nur Pt500)
+Typ PL, 25 bar/180 °C/ Ø6x150 mm, Kabellänge 2 m
+Typ PL, 25 bar/180 °C/ Ø6x150 mm, Kabellänge 5 m
+(nur Pt500)
+
+Splitausführung mit 1,5 m Steuerleitung, Steuerleitung lösbar
+Splitausführung mit 3,0 m Steuerleitung, Steuerleitung lösbar
+Splitausführung mit 5,0 m Steuerleitung, Steuerleitung lösbar
+
+Code
+
+ohne Spannungsversorgung
+Standardbatterie für 6 Jahre (2xAA Zellen)
+Universalbatterie für 6 Jahre (D-Zelle)
+Batterie für 11 Jahre (C-Zelle)
+Batterie für 11 Jahre (D-Zelle)
+Batterie für 16 Jahre (D-Zelle)
+Spannungsversorgung 24V AC/DC mit Anschlussklemmen
+Spannungsversorgung 100 – 240 V AC mit Anschlussleitung 1,5 m
+Spannungsversorgung 100 – 240 V AC mit Anschlussleitung 5 m
+Spannungsversorgung 100 – 240 V AC mit Anschlussleitung 5 m, bei GPRS Modul wählen
+Spannungsversorgung 24V AC/DC mit Anschlussklemmen, bei GPRS Modul wählen
+
+9. Kommunikation Modul 1
+kein Modul
+Analog-Modul
+M-Bus-Modul G4
+M-Bus-Modul G4-MI mit 2 Impulseingängen
+Impulsmodul
+
+10. Kommunikation Modul 2
+kein Modul
+Analog-Modul
+M-Bus-Modul G4
+Funkmodul 868 MHz; OMS 2.0; T1; Sicherheitsprofil
+A *)
+
+N
+P
+R
+
+Code
+00
+0B
+0C
+0D
+0E
+0H
+0J
+0M
+0N
+0P
+0Q
+
+Code
+0
+A
+B
+C
+E
+F
+M
+N
+P
+V
+W
+
+Code
+0
+A
+B
+N
+P
+
+Code
+0
+A
+B
+E
+
+46/51
+Funkmodul 868 MHz mit externer Antenne; OMS 2.0;
+T1; Sicherheitsprofil A *)
+GPRS Modul
+GPRS-Modul (incl. SIM-Karte)
+Impulsmodul
+Funkmodul 868 MHz; OMS 4.1.2; T1, C1; Sicherheitsprofil A, B *)
+Funkmodul 868 MHz mit externer Antenne; OMS
+4.1.2; T1, C1; Sicherheitsprofil A, B *)
+NB-IoT Modul
+NB-IoT Modul inkl. SIM
+NB-IoT Modul inkl. SIM beigestellt vom Kunden
+LoRaWAN Modul int. Antenne
+LoRaWAN Modul ext. Antenne
+
+11. Datenlogger
+ohne Datenlogger
+Datenlogger mit 8 Kanälen
+
+H
+J
+P
+Q
+W
+1
+2
+3
+4
+5
+
+Code
+
+Code
+
+geeicht nach Landesvorschrift
+konform gemäß MID, Klasse 2
+konform gemäß MID, Klasse 3
+geprüft nach CEN 1434 Klasse 2
+geprüft nach CEN 1434 Klasse 3
+geprüft nach Landesvorschrift
+
+CL
+M2
+M3
+T2
+T3
+TL
+
+Anzeige: kWh (bis qp 10)
+
+Code
+A
+
+B
+C
+D
+G
+H
+K
+V
+
+Weitere Merkmale
+
+0
+8
+
+12. Eichung / Konformität
+
+13. Energieeinheit
+
+Anzeige: MWh mit 3 Nachkommastellen (ab qp 15
+mit 2 Nachkommastellen; ab qp 150 mit 1 Nachkommastelle)
+Anzeige: MJ (bis qp 2.5)
+Anzeige: GJ mit 3 Nachkommastellen (ab qp 3,5 mit
+2 Nachkommastellen; ab qp 40 mit 1 Nachkommastelle)
+Anzeige: kWh (bis qp 10), blinkend
+Anzeige: MWh mit 3 Nachkommastellen (ab qp 15
+mit 2 Nachkommastellen), blinkend
+Anzeige: GJ mit 3 Nachkommastellen (ab qp 6 mit 2
+Nachkommastellen), blinkend
+Nur für Durchflusszähler:
+Anzeige: m³ mit 2 Nachkommastellen (ab qp 25 mit 1
+Nachkommastelle)
+
+F
+
+Messdynamik
+Messdynamik 1:100
+
+Code
+C
+
+andere Messdynamik auf Anfrage
+
+*) Zusatzbestellangaben erforderlich (Siehe Seite 45,
+46)
+
+47/51
+
+16
+
+Zusatzbestellangaben für Funk-Modul 868 MHz (Wireless M-Bus EN13757-4, OMS v2.0)
+
+Für OMS v2.0, Funk Mode T1, Sicherheitsprofil A
+(Verschlüsselung Mode 5)
+
+Bestellbeispiel:
+
+Nötige Zusatzangaben auf dem Auftrag:
+Funk-Modul 868 MHz int. / ext. Antenne
+
+Bestellbeispiel OMS
+
+UH50-XYY0-Y 00-YXEX-YYX
+UH50-XYY0-Y 00-YXFX-YYX
+
+2 - 9 - 1 - P601
+
+Beschreibung
+
+OMS
+
+1. Protokolltyp
+OMS 2.0 / wM-Bus
+2. Sendeintervall
+Sendeintervall von 15 Minuten
+Sendeintervall von 1 Minute
+Sendeintervall von 16 Sekunden
+Sendeintervall von 20 Sekunden
+Sendeintervall von 12 Sekunden
+3. Verschlüsselung
+keine
+Sicherheitsprofil A (Encryption Mode
+5), AES-128 Bit
+4. Datentelegramm
+Telegramm Funk Standard
+Telegramm Funk Mobil
+Telegramm Funk Mobil mit Tarifen
+
+Code
+2
+Code
+0
+3
+5
+8
+9
+Code
+0
+1
+
+1. Protokolltyp
+2. Sendeintervall
+3. Verschlüsselung
+4. Datentelegramm
+
+UH50-XYY0-Y 00-YXEX-YYX + 2-9-1-P601
+E=
+
+P600
+P601
+P602
+
+Weitere Datentelegramme auf Anfrage.
+Näheres zur Batterielebensdauer siehe Kap.8
+
+Funk-Modul 868 MHz int. Antenne
+(Wireless M-Bus) OMS v2.0
+2=
+OMS v2.0, Funk Mode T1
+9=
+Sendeintervall von 12 Sekunden (Funk mobil)
+1=
+Sicherheitsprofil A (Encryption Mode 5),
+AES-128 Bit; z. B. zur Anbindung an Empfänger die eine nicht so hohe Verschlüsselung unterstützen.
+P601 = Telegramm Funk mobil
+▪ Aktuelle Energie
+▪ Aktuelles Volumen
+▪ Energie am Monatsstichtag
+▪ Volumen am Monatsstichtag
+▪ Monatsstichtag
+▪ Energie am Jahresstichtag
+▪ Jahresstichtag
+▪ Fehler (herstellerspezifisch)
+▪ Aktueller Zeitstempel (Typ I)
+
+OMS:
+Open Metering System, eine Interessengemeinschaft von
+Verbänden die eine offene, herstellerübergreifende Spezifikation für Kommunikationsschnittstellen und Basisanforderungen an Zähler entwickelt hat.
+Definiert Anforderungen zusätzlich zur Norm EN13757-4.
+
+48/51
+
+17
+
+Zusatzbestellangaben für Funk-Modul 868 MHz (Wireless M-Bus EN13757-4, OMS v4.1.2)
+
+Für OMS v4.1.2 (BSI), Funk Mode T1, Sicherheitsprofil B (Verschlüsselung Mode 7) oder Funk
+Mode C1
+
+Bestellbeispiel:
+Bestellbeispiel OMS
+
+Nötige Zusatzangaben auf dem Auftrag:
+Funk-Modul 868 MHz int. / ext. Antenne
+
+UH50-XYY0-Y 00-YXQX-YYX
+UH50-XYY0-Y 00-YXWX-YYX
+
+7 - 0 - 3 - P600
+1. Protokolltyp
+
+Beschreibung
+
+OMS
+
+1. Protokolltyp
+OMS 4.1.2 / wM-Bus T1(BSI) *)
+OMS 4.1.2 / wM-Bus C1
+2. Sendeintervall
+Sendeintervall von 15 Minuten
+Sendeintervall von 16 Sekunden
+3. Verschlüsselung
+keine
+Sicherheitsprofil A
+(Encryption Mode 5), AES 128
+Sicherheitsprofil B für BSI (Encryption
+Mode 7), AES 128
+4. Datentelegramm
+Telegramm Funk Standard
+Telegramm Funk Mobil
+5. Alter der Daten
+ohne
+mit **)
+
+Code
+7
+8
+Code
+0
+5
+Code
+0
+2
+3
+
+P600
+P601
+Code
+0
+1
+
+Weitere Datentelegramme für Anfrage.
+Näheres zur Batterielebensdauer siehe Kap.8
+*) nur mit Verschlüsselung: Code = 3
+**) vor
+
+1
+
+allem bei Anbindung an ein Smart Meter Gateway
+(Deutschland). Zum Zeitpunkt der Funkaussendung gibt es
+die verstrichene Zeit an, seit der das Funkmodul Daten vom
+Rechenwerk geholt hat.
+
+2. Sendeintervall
+3. Verschlüsselung
+4. Datentelegramm
+5. Alter der Daten
+
+UH50-XYY0-Y 00-YXQX-YYX
+
++ 7-0-3-
+
+P600-1
+Q=
+
+Funk-Modul 868 MHz int. Antenne
+(Wireless M-Bus) OMS v4.1.2
+7=
+OMS v4.1.2, Funk Mode T1
+0=
+Sendeintervall von 15 Minuten (Funk stationär)
+3=
+Sicherheitsprofil B für BSI (Encryption Mode
+7), AES-128 Bit; z. B. zur Anbindung an ein
+Smart Meter Gateway
+P600 = Telegramm Funk Standard
+1=
+mit Alter der Daten
+▪ Aktuelle Energie
+▪ Aktuelles Volumen
+▪ Aktueller Durchfluss
+▪ Aktuelle Leistung
+▪ Aktuelle Temperaturen warme und kalte
+Seite
+▪ Fehler (herstellerspezifisch)
+▪ Aktueller Zeitstempel (Typ I)
+
+OMS:
+Open Metering System, eine Interessengemeinschaft von
+Verbänden die eine offene, herstellerübergreifende Spezifikation für Kommunikationsschnittstellen und Basisanforderungen an Zähler entwickelt hat.
+Definiert Anforderungen zusätzlich zur Norm EN13757-4.
+
+Druckverlust
+
+18
+
+49/51
+
+Druckverlust
+
+Nenndurchfluss
+qp
+m3/h
+
+0,6
+1,5
+1,5
+2,5
+2,5
+3,5
+6
+6
+10
+10
+15
+15
+25
+40
+60
+150
+
+Baulänge
+mm
+110, 190
+110
+130, 190
+190
+130
+260
+150
+260
+200, 300
+300
+270
+200
+300
+300
+360
+500
+
+Anschluss
+
+3
+
+G /4, G 1, DN20
+G 3/4
+G 1, DN20
+G 1, DN20
+G1
+1
+G 1 /4, DN25
+G 11/4
+G 11/4, DN25
+G 2, DN40
+G2
+DN50
+DN50
+DN65
+DN80
+DN100
+DN150
+
+Druckverlust
+bei qp
+
+Kv-Wert
+bei Δp 1 bar
+
+Kurve im
+Diagramm
+
+mbar
+150
+170
+160
+210
+200
+55
+190
+140
+130
+110
+110
+95
+105
+160
+115
+120
+
+m3/h
+1,5
+3,9
+3,8
+5,3
+5,6
+15
+14
+16
+28
+30
+45
+49
+77
+100
+177
+433
+
+A
+C
+B
+D
+E
+G
+F
+H
+I
+J
+K
+L
+M
+N
+O
+P
+
+Der Druckverlust in einem Durchflusssensor wird beim Nominaldurchfluss qp angegeben.
+Mit Hilfe des Kv-Wertes, der den Durchfluss bei 1 bar Druckdifferenz angibt, kann der tatsächliche Druckverlust
+bei gegebenem Durchfluss berechnet werden:
+𝑄 2
+∆𝑝 = 1𝑏𝑎𝑟 × ( )
+𝐾𝑣
+
+∆𝑝 = 𝐷𝑟𝑢𝑐𝑘𝑣𝑒𝑟𝑙𝑢𝑠𝑡 𝑖𝑛 𝑏𝑎𝑟
+𝑄 = 𝐷𝑢𝑟𝑐ℎ𝑓𝑙𝑢𝑠𝑠 𝑖𝑛 𝑚³/ℎ
+𝐾𝑣 = 𝐾𝑣 − 𝑊𝑒𝑟𝑡 𝑏𝑒𝑖 ∆𝑝 = 1 𝑏𝑎𝑟
+
+Alternativ lässt sich dieser Wert auch mit Hilfe des Diagrammes grafisch ablesen.
+
+Druckverlust
+
+50/51
+
+Druckverlust T550 (UH50…)
+1000
+
+BC
+
+DE
+
+FGH
+
+I J
+
+Druckverlust in mbar
+
+A
+
+250
+
+100
+
+10
+0,1
+
+17.11.2020
+
+1
+
+10
+
+Durchfluss in m³/h
+
+100
+
+KL
+
+M
+
+N
+
+Druckverlust
+
+51/51
+
+Landis+Gyr GmbH
+Humboldtstraße 64
+90459 Nürnberg
+Deutschland
+
+

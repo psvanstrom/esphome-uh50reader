@@ -3,6 +3,9 @@ secrets.yaml
 secrets.yml
 *.secret
 
+
+# Licensed IEC standard (local reference only)
+docs/iec62056-21_en_.pdf
 # Python bytecode
 __pycache__/
 *.pyc
