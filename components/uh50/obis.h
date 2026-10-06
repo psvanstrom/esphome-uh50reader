@@ -32,7 +32,7 @@ typedef struct {
 } OBISDictionary;
 
 static const OBISDictionary OBIS_DICT[] = {
-    {"6.8", "Cumulative Energy (MWh)"},
+    {"6.8", "Cumulative Energy"},
     {"6.26", "Cumulative Volume (m3)"},
     {"9.21", "Serial Number"},
     {"6.4", "Current Power (kW)"},

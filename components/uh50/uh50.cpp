@@ -9,6 +9,20 @@ namespace uh50 {
 
 static const char *const TAG = "uh50.reader";
 
+// The meter can be configured to report energy (OBIS 6.8) in MWh, GJ, kWh or MJ.
+// Normalise to MWh, the unit the cumulative_energy sensor is declared with.
+static float energy_to_mwh(float value, const char *unit) {
+  if (!strcmp(unit, "GJ"))
+    return value / 3.6f;  // 1 MWh = 3.6 GJ
+  if (!strcmp(unit, "kWh"))
+    return value / 1000.0f;
+  if (!strcmp(unit, "MJ"))
+    return value / 3600.0f;
+  if (unit[0] != '\0' && strcmp(unit, "MWh") != 0)
+    ESP_LOGW(TAG, "Unknown energy unit '%s', publishing value as MWh", unit);
+  return value;
+}
+
 // IEC 62056-21 mode B request. The leading NUL bytes wake the optical head,
 // followed by the "/#!\r\n" data request. Sent on the 300 baud TX line.
 static const uint8_t DATA_CMD[] = {
@@ -108,7 +122,7 @@ void UH50Reader::process_telegram() {
     const char *code = this->obisdata_[i].obis_code;
     float value = atof(this->obisdata_[i].value);
     if (!strcmp(code, "6.8") && this->cumulative_energy_sensor_ != nullptr)
-      this->cumulative_energy_sensor_->publish_state(value);
+      this->cumulative_energy_sensor_->publish_state(energy_to_mwh(value, this->obisdata_[i].unit));
     else if (!strcmp(code, "6.26") && this->cumulative_volume_sensor_ != nullptr)
       this->cumulative_volume_sensor_->publish_state(value);
     else if (!strcmp(code, "6.4") && this->current_power_sensor_ != nullptr)

@@ -28,7 +28,7 @@ All sensors are optional — declare only the ones you want.
 
 | Key                 | OBIS  | Unit  | Device class | State class        |
 |---------------------|-------|-------|--------------|--------------------|
-| `cumulative_energy` | 6.8   | MWh   | energy       | total_increasing   |
+| `cumulative_energy` | 6.8   | MWh¹  | energy       | total_increasing   |
 | `cumulative_volume` | 6.26  | m³    | volume       | total_increasing   |
 | `current_power`     | 6.4   | kW    | power        | measurement        |
 | `flow_rate`         | 6.27  | m³/h  | –            | measurement        |
@@ -213,13 +213,15 @@ Recognised OBIS codes:
 
 | OBIS   | Sensor              | Unit  |
 |--------|---------------------|-------|
-| `6.8`  | `cumulative_energy` | MWh   |
+| `6.8`  | `cumulative_energy` | MWh¹  |
 | `6.26` | `cumulative_volume` | m³    |
 | `6.4`  | `current_power`     | kW    |
 | `6.27` | `flow_rate`         | m³/h  |
 | `6.29` | `flow_temp`         | °C    |
 | `6.28` | `return_temp`       | °C    |
 | `6.30` | `diff_temp`         | °C    |
+
+¹ Meters configured to report energy in GJ, kWh or MJ are converted to MWh automatically.
 
 > **Meter-specific decoding:** the OBIS codes emitted by the meter vary between firmware
 > revisions. If a value never appears, enable debug logging and inspect the raw telegram —
